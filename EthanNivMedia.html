@@ -218,15 +218,12 @@
                         <li><strong>End-Effector Design:</strong> Created custom compliant drawing tool for consistent contact across various drawing surfaces.</li>
                     </ul>
                     <div class="mt-8 flex flex-col items-center space-y-4">
+                        <!-- Responsive Video Embed -->
                         <div class="w-full max-w-lg aspect-video rounded-lg overflow-hidden shadow-lg">
                             <video controls class="w-full h-full">
-                                <source src="scara_drawbot.mp4" type="video/mp4" onerror="this.parentElement.innerHTML='<p class=\'text-red-400\'>Video not found or unsupported format. Ensure scara_drawbot_video.mp4 is in the same directory as your HTML file.</p>'">
+                                <source src="scara_drawbot.mp4" type="video/mp4" onerror="this.parentElement.innerHTML='<p class=\'text-red-400\'>Video not found or unsupported format. Ensure scara_drawbot.mp4 is in the same directory as your HTML file.</p>'">
                                 Your browser does not support the video tag.
                             </video>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-lg">
-                            <img src="scara_drawbot_image1.png" alt="SCARA Drawbot Image 1" class="w-full h-auto rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1a202c/a0aec0?text=Image+1+Not+Found+or+In+Wrong+Directory'">
-                            <img src="scara_drawbot_image2.jpg" alt="SCARA Drawbot Image 2" class="w-full h-auto rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1a202c/a0aec0?text=Image+2+Not+Found+or+In+Wrong+Directory'">
                         </div>
                     </div>
                     <a href="https://github.com/TheoDfft/SCARA-Drawer" target="_blank" class="mt-4 text-blue-400 hover:text-blue-300 underline block text-center">View Project on GitHub</a>
@@ -234,7 +231,9 @@
                 <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
                     <h3 class="text-3xl font-semibold text-blue-300 mb-2">M.Sc. Mechatronics Projects</h3>
                     <ul class="list-disc list-inside text-gray-300 space-y-2">
-                        <li>Simulator for forward and inverse kinematics of a 6DOF robotic arm.</li>
+                        <li>Simulator for forward and inverse kinematics of a 6DOF robotic arm.
+                            <a href="https://github.com/lorkol/Foundations-Course-Project" target="_blank" class="text-blue-400 hover:text-blue-300 underline ml-2">View on GitHub</a>
+                        </li>
                         <li>Simulation of a 3DOF 1-legged robot hopper and the associated motion planning.</li>
                     </ul>
                 </div>
@@ -243,6 +242,10 @@
                     <p class="text-lg text-gray-300 mb-4">
                         Designed and implemented a self-balancing quadrotor drone control system.
                     </p>
+                    <!-- Updated image source for B.S. Final Project -->
+                    <div class="flex justify-center mb-4">
+                        <img src="quadrotor image.png" alt="Self-balancing Quadrotor Drone" class="rounded-lg shadow-md w-full max-w-sm" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/a0aec0?text=Quadrotor+Image+Not+Found+or+In+Wrong+Directory';this.alt='Quadrotor Image Not Found'">
+                    </div>
                     <ul class="list-disc list-inside text-gray-300 space-y-2">
                         <li>Designed, implemented, and tuned a PID controller over pitch, roll, yaw, and altitude using an IMU and an ultrasonic sensor.</li>
                         <li>Incorporated discrete-time control, taking into consideration the controller frequency, and added a Low-Pass Filter (LPF).</li>
