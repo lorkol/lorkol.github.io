@@ -1,358 +1,728 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ethan Niv - Robotics & Software Engineer</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React & Babel for easy maintenance -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Custom styles for the Inter font and smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+        @keyframes spin-slow {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
-        body {
-            font-family: 'Inter', sans-serif;
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #06080c; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+        .animate-spin-custom { animation: spin-slow 20s linear infinite; }
+        
+        /* Hide scrollbar for toolbar but allow functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-        /* Custom scrollbar for better aesthetics */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
-        ::-webkit-scrollbar-track {
-            background: #1a202c; /* Dark background for the track */
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #4a5568; /* Greyish thumb */
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a0aec0; /* Lighter grey on hover */
+
+        /* Fallback for icons before Lucide loads */
+        [data-lucide] {
+            width: 24px;
+            height: 24px;
+            stroke-width: 2;
+            stroke: currentColor;
+            fill: none;
         }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-200">
-    <header class="bg-gray-800 shadow-lg py-4 fixed w-full z-10">
-        <nav class="container mx-auto flex justify-between items-center px-4">
-            <a href="#home" class="text-2xl font-bold text-blue-400 hover:text-blue-300 rounded-md p-2 transition duration-300 ease-in-out">Ethan Niv</a>
-            <div class="space-x-4">
-                <a href="#about" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">About</a>
-                <a href="#education" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">Education</a>
-                <a href="#experience" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">Experience</a>
-                <a href="#skills" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">Skills</a>
-                <a href="#projects" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">Projects</a>
-                <a href="#hobbies" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">Hobbies</a>
-                <a href="#volunteering" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">Volunteering</a>
-            </div>
-        </nav>
-    </header>
+<body class="bg-[#06080c] text-slate-300 font-sans selection:bg-blue-500/30">
+    <div id="root"></div>
 
-    <section id="home" class="h-screen flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900 text-center pt-16">
-        <div class="max-w-4xl mx-auto p-8 bg-gray-800 rounded-xl shadow-2xl transform hover:scale-105 transition duration-500 ease-in-out">
-            <h1 class="text-6xl font-extrabold text-blue-400 mb-4 animate-fade-in-down">Ethan Niv</h1>
-            <p class="text-3xl text-gray-300 mb-6 animate-fade-in-up">Robotics & Software Engineer</p>
-            <p class="text-lg text-gray-400 leading-relaxed animate-fade-in">
-                Passionate about designing and developing real-time control and simulation systems, with expertise in software, hardware, and motion planning.
-            </p>
-            <div class="mt-8 flex justify-center space-x-6">
-                <a href="https://www.linkedin.com/in/eitan-niv-527904203/" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">LinkedIn</a>
-                <a href="mailto:en2456@nyu.edu" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">Email Me</a>
-            </div>
-        </div>
-    </section>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
 
-    <section id="about" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">About Me</h2>
-            <div class="bg-gray-800 p-8 rounded-xl shadow-xl flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-8">
-                <!-- Portrait Image -->
-                <div class="flex-shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-lg border-4 border-blue-400">
-                    <img src="Media/my_portrait.jpg" alt="Ethan Niv Portrait" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/256x256/4a5568/a0aec0?text=Image+Not+Found'">
-                </div>
-                <!-- About Me Text -->
-                <div>
-                    <p class="text-lg text-gray-300 leading-relaxed mb-4">
-                        I am a dedicated Robotics and Software Engineer with a strong background in designing, developing, and deploying complex real-time control and simulation systems. My expertise spans both hardware and software, with a focus on creating efficient, robust, and safe solutions.
-                    </p>
-                    <p class="text-lg text-gray-300 leading-relaxed">
-                        With a Master's in Mechatronics and Robotics from NYU Tandon School of Engineering and a B.S. in Electrical Engineering and Computer Science from Tel Aviv University, I bring a comprehensive understanding of robotics, control theory, and software development to every project. I thrive in rapid R&D environments, adapting to evolving requirements and integrating cutting-edge algorithms.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+        // --- RRT MOTION PLANNING BACKGROUND ---
+        const RRTBackground = () => {
+            const canvasRef = useRef(null);
+            const mouseRef = useRef({ x: 0, y: 0 });
 
-    <section id="education" class="py-20 bg-gray-800">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">Education</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
-                    <h3 class="text-3xl font-semibold text-blue-300 mb-3">New York University Tandon School of Engineering</h3>
-                    <p class="text-xl text-gray-400 mb-2">M.S. in Mechatronics and Robotics</p>
-                    <p class="text-lg text-gray-500 mb-4">Anticipated Graduation: May 2026</p>
-                    <p class="text-lg text-gray-300 mb-4"><strong>Current GPA: 4.0</strong></p>
-                    <h4 class="text-xl font-medium text-gray-300 mb-2">Relevant Courses:</h4>
-                    <ul class="list-disc list-inside text-gray-400 space-y-1">
-                        <li>Foundations of Robotics</li>
-                        <li>Mathematics for Robotics</li>
-                        <li>Advanced Mechatronics</li>
-                        <li>Gait and Manipulation</li>
-                        <li>Vertically Integrated Project: Research on bi-pedal robots (RL Focused)</li>
-                        <li>High-Technology Entrepreneurship</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
-                    <h3 class="text-3xl font-semibold text-blue-300 mb-3">Tel Aviv University</h3>
-                    <p class="text-xl text-gray-400 mb-2">B.S. in Electrical Engineering and Computer Science</p>
-                    <p class="text-lg text-gray-500 mb-4">Graduated: June 2020</p>
-                    <h4 class="text-xl font-medium text-gray-300 mb-2">Relevant Courses:</h4>
-                    <ul class="list-disc list-inside text-gray-400 space-y-1">
-                        <li>Introduction to Control Theory; Control Laboratory</li>
-                        <li>Practical Feedback Systems; Introduction to Digital Control</li>
-                        <li>Introduction to Modern Linear Control Theory</li>
-                        <li>Algorithms for Robotic Motion Planning; Algorithms for Robotic Motion Planning Workshop
-                            <ul class="list-circle list-inside ml-4 text-gray-500">
-                                <li>Final Project: Developed code for path and motion planning for multiple agents in a dynamically built map with obstacles, ensuring optimized, collision-free movement.</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+            useEffect(() => {
+                const canvas = canvasRef.current;
+                const ctx = canvas.getContext('2d');
+                let width, height;
+                let nodes = [];
+                const maxNodes = 60;
 
-    <section id="experience" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">Experience</h2>
-            <div class="space-y-10">
-                <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
-                    <h3 class="text-3xl font-semibold text-blue-300 mb-2">Software Engineer</h3>
-                    <p class="text-xl text-gray-400 mb-1">Zalirian LTD., Tel Aviv, Israel</p>
-                    <p class="text-lg text-gray-500 mb-4">June 2021 - December 2023</p>
-                    <ul class="list-disc list-inside text-gray-300 space-y-2">
-                        <li>Designed and programmed the entirety of the company's main application as the sole programmer, working with the system architect.</li>
-                        <li>Implemented and adapted complex logic requirements from the lead system engineer.</li>
-                        <li>Designed flexible code for adaptive changes in a rapid R&D environment.</li>
-                        <li>Collaborated with algorithm developers to integrate their code into the application.</li>
-                        <li>Developed both FrontEnd (GUI) and BackEnd (infrastructure, hardware communication, data handling).</li>
-                        <li>Interfaced directly with various motor and camera SDKs and drivers.</li>
-                        <li>Developed real-time synchronized solutions involving complex decision-making, axes control, camera captures, and image processing.</li>
-                        <li>Implemented a Motion Planning algorithm to assure movement efficiency and safety in a 5DoF system with physical limitations and obstacles.</li>
-                        <li>Logged data according to priority for debriefing or real-time system engineer/operator use.</li>
-                        <li>Utilized multiprocessing and multithreading.</li>
-                        <li>Applied various design patterns to maximize efficiency, code correctness, and readability.</li>
-                        <li>Developed in both C++ and Python, with interop using Pybind.</li>
-                        <li>Used Git (Azure) for source control.</li>
-                    </ul>
+                const resize = () => {
+                    width = canvas.width = window.innerWidth;
+                    height = canvas.height = window.innerHeight;
+                    nodes = [{ x: width / 2, y: height / 2 }];
+                };
+
+                const step = () => {
+                    if (nodes.length < maxNodes) {
+                        const target = Math.random() < 0.3 ? mouseRef.current : { x: Math.random() * width, y: Math.random() * height };
+                        let nearest = nodes[0];
+                        let minDist = Math.hypot(nearest.x - target.x, nearest.y - target.y);
+
+                        for (const node of nodes) {
+                            const d = Math.hypot(node.x - target.x, node.y - target.y);
+                            if (d < minDist) {
+                                minDist = d;
+                                nearest = node;
+                            }
+                        }
+
+                        const angle = Math.atan2(target.y - nearest.y, target.x - nearest.x);
+                        const newNode = {
+                            x: nearest.x + Math.cos(angle) * 40,
+                            y: nearest.y + Math.sin(angle) * 40,
+                            parent: nearest
+                        };
+                        nodes.push(newNode);
+                    } else {
+                        nodes.shift();
+                    }
+
+                    ctx.clearRect(0, 0, width, height);
+                    ctx.strokeStyle = 'rgba(59, 130, 246, 0.15)';
+                    ctx.lineWidth = 1;
+
+                    for (const node of nodes) {
+                        if (node.parent) {
+                            ctx.beginPath();
+                            ctx.moveTo(node.x, node.y);
+                            ctx.lineTo(node.parent.x, node.parent.y);
+                            ctx.stroke();
+                            
+                            ctx.fillStyle = 'rgba(59, 130, 246, 0.3)';
+                            ctx.beginPath();
+                            ctx.arc(node.x, node.y, 1.5, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                    }
+                    requestAnimationFrame(step);
+                };
+
+                window.addEventListener('resize', resize);
+                window.addEventListener('mousemove', (e) => {
+                    mouseRef.current = { x: e.clientX, y: e.clientY };
+                });
+                
+                resize();
+                step();
+                return () => window.removeEventListener('resize', resize);
+            }, []);
+
+            return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0 opacity-50" />;
+        };
+
+        // --- ROBOTIC ARM COMPONENT ---
+        const RoboticArm = () => {
+            const [armState, setArmState] = useState({ q1: 0, q2: 0 });
+            const L1 = 100; 
+            const L2 = 80;  
+            const basePos = { x: 500, y: 100 }; 
+
+            useEffect(() => {
+                const handleMouseMove = (e) => {
+                    const targetX = e.clientX - (window.innerWidth - 100);
+                    const targetY = e.clientY - 100;
+                    
+                    const distSq = targetX * targetX + targetY * targetY;
+                    const dist = Math.sqrt(distSq);
+                    
+                    const reach = L1 + L2;
+                    const clampedX = dist > reach ? (targetX / dist) * reach : targetX;
+                    const clampedY = dist > reach ? (targetY / dist) * reach : targetY;
+                    
+                    const D = (clampedX**2 + clampedY**2 - L1**2 - L2**2) / (2 * L1 * L2);
+                    const q2 = Math.atan2(Math.sqrt(Math.max(0, 1 - D**2)), D);
+                    const q1 = Math.atan2(clampedY, clampedX) - Math.atan2(L2 * Math.sin(q2), L1 + L2 * Math.cos(q2));
+                    
+                    setArmState({ q1, q2 });
+                };
+                window.addEventListener('mousemove', handleMouseMove);
+                return () => window.removeEventListener('mousemove', handleMouseMove);
+            }, []);
+
+            const j1x = basePos.x + L1 * Math.cos(armState.q1);
+            const j1y = basePos.y + L1 * Math.sin(armState.q1);
+            const eex = j1x + L2 * Math.cos(armState.q1 + armState.q2);
+            const eey = j1y + L2 * Math.sin(armState.q1 + armState.q2);
+
+            return (
+                <svg className="absolute top-0 right-0 w-[600px] h-[600px] opacity-40 pointer-events-none hidden lg:block" viewBox="0 0 600 600">
+                    <defs>
+                        <filter id="glow"><feGaussianBlur stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    </defs>
+                    <circle cx={basePos.x} cy={basePos.y} r="10" fill="#1e293b" stroke="#3b82f6" strokeWidth="2" />
+                    <line x1={basePos.x} y1={basePos.y} x2={j1x} y2={j1y} stroke="#3b82f6" strokeWidth="8" strokeLinecap="round" filter="url(#glow)" />
+                    <line x1={j1x} y1={j1y} x2={eex} y2={eey} stroke="#3b82f6" strokeWidth="6" strokeLinecap="round" filter="url(#glow)" />
+                    <circle cx={j1x} cy={j1y} r="6" fill="#0f172a" stroke="#3b82f6" strokeWidth="2" />
+                    <circle cx={eex} cy={eey} r="5" fill="#ef4444" filter="url(#glow)" />
+                </svg>
+            );
+        };
+
+        const Icon = ({ name, className = "w-6 h-6" }) => {
+            useEffect(() => {
+                if (window.lucide) window.lucide.createIcons();
+            }, []);
+            return <i data-lucide={name} className={className}></i>;
+        };
+
+        const Tag = ({ children }) => (
+            <span className="px-2 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[9px] font-bold tracking-widest uppercase whitespace-nowrap">
+                {children}
+            </span>
+        );
+
+        const SectionHeading = ({ children, icon, id }) => (
+            <div id={id} className="flex items-center gap-3 mb-10 scroll-mt-24 group">
+                <div className="p-3 bg-blue-500/10 rounded-xl border border-blue-500/20 group-hover:bg-blue-500/20 transition-all duration-500">
+                    <Icon name={icon} className="w-6 h-6 text-blue-500" />
                 </div>
-                <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
-                    <h3 class="text-3xl font-semibold text-blue-300 mb-2">Software and Hardware Developer</h3>
-                    <p class="text-xl text-gray-400 mb-1">Israeli Air Force, Israel</p>
-                    <p class="text-lg text-gray-500 mb-4">October 2018 - April 2021</p>
-                    <ul class="list-disc list-inside text-gray-300 space-y-2">
-                        <li>Developed SW & HW systems designed to improve aircraft safety & maintainability. Additionally, led the project management aspects, including CDR, Gants, budgets, etc.</li>
-                        <li>Designed & developed multiple real-time control and simulation systems, end-to-end - hardware, software, and deployment.</li>
-                        <li>Reverse engineered legacy airborne systems to interface, upgrade, and redesign them.</li>
-                        <li>Interfaced with complex sensory systems to acquire and analyze data, using signal processing to gain critical insights about the accuracy & safety of different aircraft parts.</li>
-                        <li>Provided software & electrical analysis for flight investigation reporting.</li>
-                        <li>Advised and mentored projects by practical engineering college students.</li>
-                        <li>Trained and advised new engineers on the team, helping them to ramp-up to routine work.</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
-                    <h3 class="text-3xl font-semibold text-blue-300 mb-2">Robotics Team Member</h3>
-                    <p class="text-xl text-gray-400 mb-1">FIRST Robotics Competition / Dbug #3316</p>
-                    <p class="text-lg text-gray-500 mb-4">September 2011 - June 2014</p>
-                    <ul class="list-disc list-inside text-gray-300 space-y-2">
-                        <li>Participated in the FRC robotics competition multiple years, actively developing all robot aspects, mainly focusing on software and electronic systems.</li>
-                        <li>Led the programming team of 4 programmers developing the robot's software.</li>
-                        <li>In charge of the electronics for the robot, also contributing to mechanics, modeling, and overall design.</li>
-                        <li>Implemented PID controls, sensor data acquisition, and vision processing.</li>
-                    </ul>
-                    <!-- Media for FIRST Robotics -->
-                    <div class="mt-8 flex flex-wrap justify-center items-center gap-4">
-                        <!-- Images -->
-                        <img src="Media/FRC0.jpg" alt="Robotics Competition Team" class="w-32 h-32 rounded-lg shadow-md object-cover" onerror="this.onerror=null;this.src='https://placehold.co/128x128/1a202c/a0aec0?text=FRC+Image+1';this.alt='FRC Image 1 Not Found'">
-                        <img src="Media/FRC1.jpg" alt="Robot in action" class="w-32 h-32 rounded-lg shadow-md object-cover" onerror="this.onerror=null;this.src='https://placehold.co/128x128/1a202c/a0aec0?text=FRC+Image+2';this.alt='FRC Image 2 Not Found'">
-                        <img src="Media/FRC2.jpg" alt="Team collaborating" class="w-32 h-32 rounded-lg shadow-md object-cover" onerror="this.onerror=null;this.src='https://placehold.co/128x128/1a202c/a0aec0?text=FRC+Image+3';this.alt='FRC Image 3 Not Found'">
-                        <img src="Media/FRC3.jpg" alt="Robot close-up" class="w-32 h-32 rounded-lg shadow-md object-cover" onerror="this.onerror=null;this.src='https://placehold.co/128x128/1a202c/a0aec0?text=FRC+Image+4';this.alt='FRC Image 4 Not Found'">
+                <h2 className="text-4xl font-black tracking-tight text-white uppercase group-hover:translate-x-1 transition-transform">{children}</h2>
+                <div className="flex-1 h-[1px] bg-gradient-to-r from-blue-500/50 to-transparent ml-4"></div>
+            </div>
+        );
+
+        const App = () => {
+            const [scrollProgress, setScrollProgress] = useState(0);
+            const [isLoaded, setIsLoaded] = useState(false);
+
+            useEffect(() => {
+                setIsLoaded(true);
+                const handleScroll = () => {
+                    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    setScrollProgress((window.scrollY / totalHeight) * 100);
+                };
+                window.addEventListener('scroll', handleScroll);
+                if (window.lucide) window.lucide.createIcons();
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const navItems = [
+                { label: 'Home', id: 'home', icon: 'cpu' },
+                { label: 'About', id: 'about', icon: 'user' },
+                { label: 'Education', id: 'education', icon: 'book' },
+                { label: 'Experience', id: 'experience', icon: 'move' },
+                { label: 'Skills', id: 'skills', icon: 'award' },
+                { label: 'Projects', id: 'projects', icon: 'zap' },
+                { label: 'Hobbies', id: 'hobbies', icon: 'compass' },
+                { label: 'Volunteering', id: 'volunteering', icon: 'heart' },
+            ];
+
+            const githubButtonStyle = "mt-12 inline-flex items-center gap-4 bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-2xl font-black transition-all shadow-[0_10px_30px_rgba(37,99,235,0.3)]";
+
+            const mujocoGifs = [
+                "https://lorkol.github.io/Media/UR10_Mujoco/Diagonal_path.gif",
+                "https://lorkol.github.io/Media/UR10_Mujoco/Long_movement.gif",
+                "https://lorkol.github.io/Media/UR10_Mujoco/Long_path.gif",
+                "https://lorkol.github.io/Media/UR10_Mujoco/Quick_movement.gif",
+                "https://lorkol.github.io/Media/UR10_Mujoco/Short_path.gif"
+            ];
+
+            const frcImages = [
+                "https://lorkol.github.io/Media/FRC/FRC0.jpg",
+                "https://lorkol.github.io/Media/FRC/FRC1.jpg",
+                "https://lorkol.github.io/Media/FRC/FRC2.jpg",
+                "https://lorkol.github.io/Media/FRC/FRC3.jpg"
+            ];
+
+            return (
+                <div className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+                    <RRTBackground />
+                    
+                    {/* Background Tech Layer */}
+                    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+                        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px)`, backgroundSize: '60px 60px' }} />
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] h-[200vw] bg-[conic-gradient(from_0deg,transparent,rgba(59,130,246,0.04),transparent_90deg)] animate-spin-custom" />
                     </div>
-                    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Videos -->
-                        <div class="w-full aspect-video rounded-lg overflow-hidden shadow-lg">
-                            <video controls class="w-full h-full">
-                                <source src="Media/Dbug 2012.mp4" type="video/mp4" onerror="this.parentElement.innerHTML='<p class=\'text-red-400\'>Video not found or unsupported format. Ensure Dbug 2012.mp4 is in the same directory.</p>'">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <div class="w-full aspect-video rounded-lg overflow-hidden shadow-lg">
-                            <video controls class="w-full h-full">
-                                <source src="Media/Dbug 2013.mp4" type="video/mp4" onerror="this.parentElement.innerHTML='<p class=\'text-red-400\'>Video not found or unsupported format. Ensure Dbug 2013.mp4 is in the same directory.</p>'">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="skills" class="py-20 bg-gray-800">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">Skills</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
-                    <h3 class="text-3xl font-semibold text-blue-300 mb-4">Software</h3>
-                    <ul class="list-disc list-inside text-gray-300 space-y-2 text-lg">
-                        <li>Python</li>
-                        <li>C++</li>
-                        <li>GIT</li>
-                        <li>OpenCV</li>
-                        <li>Pybind</li>
-                        <li>LabVIEW</li>
-                        <li>PyQt</li>
-                        <li>MatLab</li>
-                        <li>Simulink</li>
-                        <li>ROS</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
-                    <h3 class="text-3xl font-semibold text-blue-300 mb-4">Technical</h3>
-                    <ul class="list-disc list-inside text-gray-300 space-y-2 text-lg">
-                        <li>Motion Planning</li>
-                        <li>Control Theory</li>
-                        <li>Signal Processing</li>
-                        <li>Sensor and Actuator Integration</li>
-                        <li>Project Management</li>
-                        <li>Client-Development</li>
-                        <li>Requirements Analysis</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">Projects</h2>
-            <div class="space-y-10">
-                <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
-                    <h3 class="text-3xl font-semibold text-blue-300 mb-2">SCARA Drawbot</h3>
-                    <p class="text-lg text-gray-400 mb-4">
-                        Developed an interactive SCARA robotic system that replicates user drawings in real-time, showcasing the integration of computer vision, embedded control, and robotics for human-guided tasks.
-                    </p>
-                    <ul class="list-disc list-inside text-gray-300 space-y-2 mb-4">
-                        <li><strong>Vision & Tracking:</strong> Implemented Raspberry Pi camera system to track an ArUco marker on a stylus using OpenCV for real-time position detection.</li>
-                        <li><strong>Sensor Fusion:</strong> Implemented sensor fusion for input from multiple cameras and filtering the signals.</li>
-                        <li><strong>Software Architecture:</strong> Built on ROS framework for robust inter-process communication and system integration.</li>
-                        <li><strong>Motion Control:</strong> Applied a singularity robust inverse kinematics algorithm with Jacobian and chain rule to translate tracked positions into precise robotic movements.</li>
-                        <li><strong>Hardware Integration:</strong> Designed system around Arduino microcontroller and Dynamixel servos for accurate joint control.</li>
-                        <li><strong>End-Effector Design:</strong> Created custom compliant drawing tool for consistent contact across various drawing surfaces.</li>
-                    </ul>
-                    <div class="mt-8 flex flex-col items-center space-y-4">
-                        <!-- Responsive Video Embed -->
-                        <div class="w-full max-w-xs aspect-video rounded-lg overflow-hidden shadow-lg">
-                            <video controls class="w-full h-full">
-                                <source src="Media/scara_drawbot.mp4" type="video/mp4" onerror="this.parentElement.innerHTML='<p class=\'text-red-400\'>Video not found or unsupported format. Ensure scara_drawbot.mp4 is in the same directory as your HTML file.</p>'">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                    </div>
-                    <a href="https://github.com/TheoDfft/SCARA-Drawer" target="_blank" class="mt-4 text-blue-400 hover:text-blue-300 underline block text-center">View Project on GitHub</a>
-                </div>
-                <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
-                    <h3 class="text-3xl font-semibold text-blue-300 mb-2">M.Sc. Mechatronics Projects</h3>
-                    <ul class="list-disc list-inside text-gray-300 space-y-2">
-                        <li>Simulator for forward and inverse kinematics of a 6DOF robotic arm. This project involved developing a robust simulator capable of computing the position of each joint and the end-effector based on given joint angles - Forward Kinematics, as well as an Inverse Kinematics function to determine joint angles from desired end-effector positions and orientations, finally providing a visualization of the robot's links.
-                            <a href="https://github.com/lorkol/Foundations-Course-Project" target="_blank" class="text-blue-400 hover:text-blue-300 underline ml-2">View on GitHub</a>
-                        </li>
-                        <div class="flex justify-center mt-4 mb-4">
-                            <img src="Media/6DOF simulator.png" alt="6DOF Robotic Arm Simulator" class="rounded-lg shadow-md w-full max-w-xs" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/a0aec0?text=6DOF+Simulator+Image+Not+Found';this.alt='6DOF Simulator Image Not Found'">
-                        </div>
-                        <li>
-                            Simulation of a 3DOF 1-legged robot hopper and the associated motion planning. This involved implementing advanced motion planning algorithms to optimize the hopping gait for stability and efficiency. The simulation was entirely developed and run within the ROS (Robot Operating System) framework, leveraging its tools for robot modeling, communication, and visualization.
-                            <div class="flex justify-center mt-4 mb-4">
-                                <video controls class="w-full max-w-xs aspect-video rounded-lg overflow-hidden shadow-lg">
-                                    <source src="Media/Hopper.mp4" type="video/mp4" onerror="this.parentElement.innerHTML='<p class=\'text-red-400\'>Video not found or unsupported format. Ensure 3DoF Hopper.mp4 is in the Media directory.</p>'">
-                                    Your browser does not support the video tag.
-                                </video>
+                    {/* --- PERSISTENT TOOLBAR --- */}
+                    <nav className="fixed top-0 w-full z-50 bg-[#06080c]/90 backdrop-blur-2xl border-b border-blue-500/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+                        <div className="max-w-7xl mx-auto px-4 lg:px-6 h-16 flex items-center gap-4">
+                            <a href="#home" className="flex-shrink-0 flex items-center gap-2 text-xl font-black text-white tracking-tighter hover:text-blue-500 transition-colors group">
+                                <span className="p-1.5 bg-blue-500/20 rounded-md group-hover:bg-blue-500 transition-all">
+                                    <Icon name="cpu" className="w-4 h-4 text-blue-500 group-hover:text-white" />
+                                </span>
+                                <span className="hidden sm:inline">ETHAN<span className="text-blue-500">NIV</span></span>
+                            </a>
+                            
+                            <div className="flex-1 flex items-center gap-1 overflow-x-auto no-scrollbar whitespace-nowrap py-2">
+                                {navItems.map(item => (
+                                    <a 
+                                        key={item.id} 
+                                        href={`#${item.id}`} 
+                                        className="flex-shrink-0 px-3 py-1.5 rounded-md text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-white hover:bg-blue-500/10 transition-all flex items-center gap-2 group"
+                                    >
+                                        <Icon name={item.icon} className="w-3 h-3 text-blue-500/50 group-hover:text-blue-500" />
+                                        {item.label}
+                                    </a>
+                                ))}
                             </div>
-                        </li>
-                        <li>
-                            <strong>Vertically Integrated Project STEP:</strong> A project focused on developing a humanoid robot with advanced walking capabilities. On the Computer Science team, I utilized Reinforcement Learning (RL) to train a policy that enabled the robot to walk, and subsequently adapted this policy for sim-to-sim transfer to validate its performance within a physics engine. Additionally, I collaborated with the Electrical Engineering team, providing expertise in control theory to help them understand and tune the PI controllers for the robot's motors.
-                        </li>
-                    </ul>
-                </div>
-                <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
-                    <h3 class="text-3xl font-semibold text-blue-300 mb-2">B.S. Final Project</h3>
-                    <p class="text-lg text-gray-300 mb-4">
-                        Designed and implemented a self-balancing quadrotor drone control system.
-                    </p>
-                    <div class="flex justify-center gap-4 mb-4 flex-wrap">
-                        <img src="Media/quadrotor image.png" alt="Self-balancing Quadrotor Drone" class="rounded-lg shadow-md w-80 h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/320x320/1a202c/a0aec0?text=Quadrotor+Image+1';this.alt='Quadrotor Image 1 Not Found'">
-                        <img src="Media/Quadrotor Body.png" alt="Quadrotor Body" class="rounded-lg shadow-md w-80 h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/320x320/1a202c/a0aec0?text=Quadrotor+Image+2';this.alt='Quadrotor Body Image Not Found'">
-                    </div>
-                    <ul class="list-disc list-inside text-gray-300 space-y-2">
-                        <li>Designed, implemented, and tuned a PID controller over pitch, roll, yaw, and altitude using an IMU and an ultrasonic sensor.</li>
-                        <li>Incorporated discrete-time control, taking into consideration the controller frequency, and added a Low-Pass Filter (LPF).</li>
-                        <li>Implemented and programmed reading from various sensors.</li>
-                        <li>Applied a Kalman filter for robust state estimation from an IMU.</li>
-                        <li>Integrated connectivity with a flight joystick controller for intuitive drone operation.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="hobbies" class="py-20 bg-gray-800">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">Hobbies</h2>
-            <div class="bg-gray-900 p-8 rounded-xl shadow-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                <div class="flex flex-col items-center space-y-4">
-                    <span class="text-lg font-semibold text-gray-300">Gaming</span>
-                </div>
-                <div class="flex flex-col items-center space-y-4">
-                    <span class="text-lg font-semibold text-gray-300">DnD (Dungeons and Dragons)</span>
-                </div>
-                <div class="flex flex-col items-center space-y-4">
-                    <span class="text-lg font-semibold text-gray-300">Volleyball</span>
-                    <img src="Media/Volleyball.jpg" alt="Volleyball Icon" class="w-48 h-48 rounded-full object-cover">
-                </div>
-                <div class="flex flex-col items-center space-y-4">
-                    <span class="text-lg font-semibold text-gray-300">Dancing</span>
-                    <img src="Media/Dancing.jpg" alt="Dancing Icon" class="w-48 h-48 rounded-full object-cover">
-                </div>
-                <div class="flex flex-col items-center space-y-4 md:col-span-2 mx-auto">
-                    <span class="text-lg font-semibold text-gray-300">Travel and Hiking</span>
-                    <img src="Media/Hiking.png" alt="Hiking Icon" class="w-48 h-48 rounded-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/192x192/1a202c/a0aec0?text=Hiking+Image+Not+Found'">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="volunteering" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">Volunteering</h2>
-            <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
-                <ul class="list-disc list-inside text-gray-300 space-y-2">
-                    <li>Teaching and overseeing a high school robotics team in the design & creation of their robot, helping the team to navigate the project and overcome obstacles along the way.</li>
-                    <li>Mentoring high school student projects for robotics matriculation exams.</li>
-                    <li>
-                        <strong>Philanthropy Chair, AEPi Fraternity:</strong> Organized and led impactful community events. For the elderly, we provided engaging games and activities, including demonstrations of new technology like VR headsets to foster connection and joy. For children's hospitals, we offered various interactive activities such as basic salsa dance classes, juggling performances, and magic tricks to bring smiles and entertainment.
-                        <div class="flex justify-center mt-4 mb-4">
-                            <img src="Media/Elderly activities.jpg" alt="Philanthropy Event" class="rounded-lg shadow-md w-full max-w-xs" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/a0aec0?text=Philanthropy+Image+Not+Found';this.alt='Philanthropy Image Not Found'">
                         </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
+                        <div className="h-[2px] bg-blue-500/10 w-full relative">
+                            <div className="h-full bg-blue-500 relative transition-all duration-100 shadow-[0_0_10px_#3b82f6]" style={{ width: `${scrollProgress}%` }}>
+                                <div className="absolute right-0 top-[-12px] text-xl transform translate-x-1/2">🤖</div>
+                            </div>
+                        </div>
+                    </nav>
 
-    <footer class="bg-gray-800 py-8 text-center text-gray-400">
-        <p>&copy; 2025 Ethan Niv. All rights reserved.</p>
-        <p class="mt-2">
-            <a href="mailto:en2456@nyu.edu" class="hover:text-blue-400 transition duration-300 ease-in-out">en2456@nyu.edu</a> |
-            <a href="tel:+19299695684" class="hover:text-blue-400 transition duration-300 ease-in-out">(929) 969-5684</a> |
-            <a href="https://www.linkedin.com/in/eitan-niv-527904203/" target="_blank" class="hover:text-blue-400 transition duration-300 ease-in-out">LinkedIn</a>
-        </p>
-    </footer>
+                    <header id="home" className="relative min-h-screen flex flex-col justify-center px-6 pt-20 overflow-hidden">
+                        <div className="max-w-7xl mx-auto w-full relative z-10">
+                            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold tracking-[0.3em] mb-8 uppercase animate-pulse">
+                                <span className="w-2 h-2 rounded-full bg-blue-500" /> System Diagnostic: 100% Operational
+                            </div>
+                            <h1 className="text-7xl md:text-[11rem] font-black text-white leading-none mb-4 tracking-tighter drop-shadow-2xl">
+                                Ethan Niv<span className="text-blue-500">.</span>
+                            </h1>
+                            <p className="text-3xl md:text-5xl font-light text-slate-400 mb-8 max-w-4xl leading-tight">
+                                Robotics & <span className="text-blue-500 font-medium">Software Engineer</span>
+                            </p>
+                            <p className="text-xl text-slate-500 mb-12 max-w-2xl leading-relaxed">
+                                Passionate about designing and developing real-time control and simulation systems, with expertise in software, hardware, and motion planning.
+                            </p>
+                            <div className="flex flex-wrap gap-6 mt-12">
+                                <a href="https://www.linkedin.com/in/eitan-niv-527904203/" target="_blank" className="group relative bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-xl font-black transition-all flex items-center gap-3 overflow-hidden shadow-[0_0_20px_rgba(37,99,235,0.3)]">
+                                    <span className="relative z-10 flex items-center gap-3">LINKEDIN <Icon name="linkedin" className="w-5 h-5" /></span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                                </a>
+                                <a href="mailto:eitanniv@gmail.com" className="bg-slate-800 hover:bg-slate-700 text-white px-10 py-5 rounded-xl font-black transition-all flex items-center gap-3 border border-white/5">
+                                    EMAIL ME <Icon name="mail" className="w-5 h-5" />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="absolute bottom-10 left-10 font-mono text-[10px] text-blue-500/40 hidden md:block">
+                            <div>LOC: 40.7128° N, 74.0060° W</div>
+                            <div>ROT: {(scrollProgress * 3.6).toFixed(2)}°</div>
+                            <div>FRM: 60FPS</div>
+                        </div>
+                        <RoboticArm />
+                    </header>
+
+                    <main className="max-w-7xl mx-auto px-6 space-y-56 pb-48 relative z-10">
+                        {/* About */}
+                        <section className="grid lg:grid-cols-[1fr_1.5fr] gap-20 items-center">
+                            <div className="relative group">
+                                <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500 to-cyan-500 rounded-3xl blur-3xl opacity-10 group-hover:opacity-30 transition duration-1000"></div>
+                                <div className="relative aspect-square rounded-3xl overflow-hidden border-4 border-blue-400 shadow-2xl group-hover:scale-[1.02] transition-transform duration-500">
+                                    <img src="https://lorkol.github.io/Media/my_portrait.jpg" alt="Ethan Niv" className="w-full h-full object-cover" onError={(e) => { e.target.src = "https://placehold.co/600x600/1a202c/a0aec0?text=Ethan+Niv" }} />
+                                </div>
+                            </div>
+                            <div className="relative">
+                                <SectionHeading icon="user" id="about">About Me</SectionHeading>
+                                <div className="space-y-8 text-xl text-slate-400 leading-relaxed relative z-10">
+                                    <p>
+                                        I am a dedicated Robotics and Software Engineer with a strong background in designing, developing, and deploying complex real-time control and simulation systems. My expertise spans both hardware and software, with a focus on creating efficient, robust, and safe solutions, while ensuring my programs are future-proof and modular.
+                                    </p>
+                                    <p>
+                                        With a Master's in Mechatronics and Robotics from NYU Tandon School of Engineering and a B.S. in Electrical Engineering and Computer Science from Tel Aviv University, I bring a comprehensive understanding of robotics, control theory, and software development to every project. I thrive in rapid R&D environments, adapting to evolving requirements and integrating cutting-edge algorithms.
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Education */}
+                        <section>
+                            <SectionHeading icon="book" id="education">Education</SectionHeading>
+                            <div className="grid md:grid-cols-2 gap-8">
+                                <div className="p-10 rounded-[2.5rem] bg-slate-900/30 border border-white/5 hover:border-blue-500/30 transition-all group overflow-hidden relative">
+                                    <h3 className="text-2xl font-bold text-blue-300 mb-2">New York University Tandon School of Engineering</h3>
+                                    <p className="text-slate-400 text-xl mb-1">M.S. in Mechatronics and Robotics</p>
+                                    <p className="text-slate-500 mb-6">Anticipated Graduation: May 2026</p>
+                                    <div className="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-lg inline-block font-mono mb-8 italic border border-blue-500/20">Current GPA: 3.958</div>
+                                    <h4 className="text-slate-200 font-bold mb-4 uppercase tracking-[0.2em] text-[10px] text-blue-400">Relevant Courses:</h4>
+                                    <ul className="grid grid-cols-1 gap-3 text-slate-400 text-sm list-disc list-inside">
+                                        {["Optimization and Reinforcement learning", "Autonomous Robotic Vehicles", "Vertically Integrated Project: Self Drive- implementing SLAM", "Vertically Integrated Project: Research on bi-pedal robots (RL Focused)", "Foundations of Robotics", "Mathematics for Robotics", "Advanced Mechatronics", "Gait and Manipulation", "High-Technology Entrepreneurship"].map(c => <li key={c}>{c}</li>)}
+                                    </ul>
+                                </div>
+                                <div className="p-10 rounded-[2.5rem] bg-slate-900/30 border border-white/5 hover:border-blue-500/30 transition-all group relative overflow-hidden">
+                                    <h3 className="text-2xl font-bold text-blue-300 mb-2">Tel Aviv University</h3>
+                                    <p className="text-slate-400 text-xl mb-1">B.S. in Electrical Engineering and Computer Science</p>
+                                    <p className="text-slate-500 mb-6">Graduated: June 2020</p>
+                                    <h4 className="text-slate-200 font-bold mb-4 uppercase tracking-[0.2em] text-[10px] text-blue-400">Relevant Courses:</h4>
+                                    <ul className="space-y-4 text-slate-400 text-sm">
+                                        <li className="flex gap-2"><span>•</span> Introduction to Control Theory; Control Laboratory</li>
+                                        <li className="flex gap-2"><span>•</span> Practical Feedback Systems; Introduction to Digital Control</li>
+                                        <li className="flex gap-2"><span>•</span> Introduction to Modern Linear Control Theory</li>
+                                        <li className="flex gap-2"><span>•</span> Algorithms for Robotic Motion Planning; Algorithms for Robotic Motion Planning Workshop
+                                            <div className="ml-4 mt-2 text-slate-500 border-l border-blue-500/30 pl-4 py-1 text-xs italic">
+                                                Final Project: Developed code for path and motion planning for multiple agents in a dynamically built map with obstacles, ensuring optimized, collision-free movement.
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Experience */}
+                        <section>
+                            <SectionHeading icon="move" id="experience">Experience</SectionHeading>
+                            <div className="space-y-24">
+                                <div className="relative pl-16 border-l-2 border-slate-800 group">
+                                    <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-slate-800 group-hover:bg-blue-500 transition-all duration-500 border-4 border-[#06080c]" />
+                                    <div className="flex flex-wrap justify-between items-end gap-6 mb-10">
+                                        <div>
+                                            <h3 className="text-4xl font-black text-white mb-2">Software Engineer</h3>
+                                            <p className="text-2xl text-blue-500 font-bold tracking-tight">Zalirian LTD., Tel Aviv, Israel</p>
+                                        </div>
+                                        <div className="text-slate-500 font-mono text-xs uppercase bg-slate-900 px-4 py-2 rounded-lg border border-white/5">June 2021 - December 2023</div>
+                                    </div>
+                                    <ul className="space-y-4 text-slate-400 text-lg leading-relaxed max-w-5xl list-disc list-outside ml-5">
+                                        {["Designed and programmed the entirety of the company's main application as the sole programmer, working with the system architect.", "Implemented and adapted complex logic requirements from the lead system engineer.", "Designed flexible code for adaptive changes in a rapid R&D environment.", "Collaborated with algorithm developers to integrate their code into the application.", "Developed both FrontEnd (GUI) and BackEnd (infrastructure, hardware communication, data handling).", "Interfaced directly with various motor and camera SDKs and drivers.", "Developed real-time synchronized solutions involving complex decision-making, axes control, camera captures, and image processing.", "Implemented a Motion Planning algorithm to assure movement efficiency and safety in a 5DoF system with physical limitations and obstacles.", "Logged data according to priority for debriefing or real-time system engineer/operator use.", "Utilized multiprocessing and multithreading.", "Applied various design patterns to maximize efficiency, code correctness, and readability.", "Developed in both C++ and Python, with interop using Pybind.", "Used Git (Azure) for source control."].map((item, i) => <li key={i}>{item}</li>)}
+                                    </ul>
+                                </div>
+
+                                <div className="relative pl-16 border-l-2 border-slate-800 group">
+                                    <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-slate-800 group-hover:bg-blue-500 transition-all duration-500 border-4 border-[#06080c]" />
+                                    <div className="flex flex-wrap justify-between items-end gap-6 mb-10">
+                                        <div>
+                                            <h3 className="text-4xl font-black text-white mb-2">Software and Hardware Developer</h3>
+                                            <p className="text-2xl text-blue-500 font-bold tracking-tight">Israeli Air Force, Israel</p>
+                                        </div>
+                                        <div className="text-slate-500 font-mono text-xs uppercase bg-slate-900 px-4 py-2 rounded-lg border border-white/5">October 2018 - April 2021</div>
+                                    </div>
+                                    <ul className="space-y-4 text-slate-400 text-lg leading-relaxed max-w-5xl list-disc list-outside ml-5">
+                                        {["Developed SW & HW systems designed to improve aircraft safety & maintainability. Additionally, led the project management aspects, including CDR, Gants, budgets, etc.", "Designed & developed multiple real-time control and simulation systems, end-to-end - hardware, software, and deployment.", "Reverse engineered legacy airborne systems to interface, upgrade, and redesign them.", "Interfaced with complex sensory systems to acquire and analyze data, using signal processing to gain critical insights about accuracy & safety.", "Provided software & electrical analysis for flight investigation reporting.", "Advised and mentored projects by practical engineering college students.", "Trained and advised new engineers on the team, helping them to ramp-up to routine work."].map((item, i) => <li key={i}>{item}</li>)}
+                                    </ul>
+                                </div>
+
+                                <div className="relative pl-16 border-l-2 border-slate-800 group">
+                                    <div className="absolute -left-[11px] top-0 w-5 h-5 rounded-full bg-slate-800 group-hover:bg-blue-500 transition-all duration-500 border-4 border-[#06080c]" />
+                                    <div className="flex flex-wrap justify-between items-end gap-6 mb-10">
+                                        <div>
+                                            <h3 className="text-4xl font-black text-white mb-2">Robotics Team Member</h3>
+                                            <p className="text-2xl text-blue-500 font-bold tracking-tight">FIRST Robotics Competition / Dbug #3316</p>
+                                        </div>
+                                        <div className="text-slate-500 font-mono text-xs uppercase bg-slate-900 px-4 py-2 rounded-lg border border-white/5">September 2011 - June 2014</div>
+                                    </div>
+                                    <ul className="space-y-4 text-slate-400 text-lg leading-relaxed max-w-5xl list-disc list-outside ml-5 mb-12">
+                                        <li>Participated in the FRC robotics competition multiple years, actively developing all robot aspects, mainly focusing on software and electronic systems.</li>
+                                        <li>Led the programming team of 4 programmers developing the robot's software.</li>
+                                        <li>In charge of the electronics for the robot, also contributing to mechanics, modeling, and overall design.</li>
+                                        <li>Implemented PID controls, sensor data acquisition, and vision processing.</li>
+                                    </ul>
+                                    
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                                        {frcImages.map((url, i) => (
+                                            <div key={i} className="aspect-square bg-slate-900 rounded-2xl overflow-hidden border border-white/5 relative group/img">
+                                                <img src={url} alt={`FRC Media ${i}`} className="w-full h-full object-cover" onError={(e) => { e.target.src = `https://placehold.co/300x300/1a202c/a0aec0?text=FRC+${i}` }} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="aspect-video bg-black rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative">
+                                            <video controls className="w-full h-full object-cover"><source src="https://lorkol.github.io/Media/FRC/Dbug%202012.mp4" type="video/mp4" /></video>
+                                        </div>
+                                        <div className="aspect-video bg-black rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative">
+                                            <video controls className="w-full h-full object-cover"><source src="https://lorkol.github.io/Media/FRC/Dbug%202013.mp4" type="video/mp4" /></video>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Skills */}
+                        <section>
+                            <SectionHeading icon="award" id="skills">Skills</SectionHeading>
+                            <div className="grid md:grid-cols-2 gap-10">
+                                <div className="bg-slate-900/40 p-10 rounded-[3rem] border border-white/5">
+                                    <h3 className="text-2xl font-black text-blue-300 mb-8 flex items-center gap-4">Software</h3>
+                                    <div className="flex flex-wrap gap-4">
+                                        {["Python", "C++", "GIT", "OpenCV", "Pybind", "LabVIEW", "PyQt", "MatLab", "Simulink", "ROS"].map(s => (
+                                            <span key={s} className="px-6 py-3 rounded-2xl bg-slate-800/80 text-slate-200 font-bold border border-white/5">{s}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="bg-slate-900/40 p-10 rounded-[3rem] border border-white/5">
+                                    <h3 className="text-2xl font-black text-blue-300 mb-8 flex items-center gap-4">Technical</h3>
+                                    <div className="flex flex-wrap gap-4">
+                                        {["Motion Planning", "Control Theory", "Optimization", "Model Predictive Control", "Reinforcement Learning", "Signal Processing", "Sensor and Actuator Integration", "Project Management", "Client-Development", "Requirements Analysis"].map(s => (
+                                            <span key={s} className="px-6 py-3 rounded-2xl bg-blue-500/5 text-blue-400 font-bold border border-blue-500/10">{s}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Projects */}
+                        <section>
+                            <SectionHeading icon="zap" id="projects">Projects</SectionHeading>
+                            <div className="space-y-24">
+                                {/* Swerve Vehicle */}
+                                <div className="bg-slate-900/20 rounded-[4rem] p-10 md:p-20 border border-blue-500/20 shadow-2xl relative overflow-hidden group">
+                                    <div className="grid lg:grid-cols-[1fr_1.3fr] gap-20 items-start relative z-10">
+                                        <div>
+                                            <div className="flex flex-wrap gap-2 mb-6">
+                                                <Tag>Path Planning</Tag>
+                                                <Tag>Control</Tag>
+                                                <Tag>Motion Modelling</Tag>
+                                            </div>
+                                            <h3 className="text-5xl font-black text-white mb-8 tracking-tighter">Swerve Vehicle Control and Motion Planning</h3>
+                                            <p className="text-xl text-slate-400 mb-10 leading-relaxed font-light">
+                                                Developed a specialized, robust, and modular control system for an omnidirectional swerve-drive robotic vehicle. The architecture enables the implementation and real-time switching between multiple robust and adaptive controllers, tailored for diverse dynamic conditions.
+                                            </p>
+                                            <ul className="space-y-6 text-slate-400 text-lg list-disc list-outside ml-5 mb-10">
+                                                <li><strong>Modular Architecture:</strong> Designed a highly modular framework that enables plug-and-play functionality, allowing for the easy switching and integration of various planners and controllers in a seamless manner.</li>
+                                                <li><strong>Robust & Adaptive Control:</strong> Implemented a suite of multiple robust and adaptive controllers to maintain high-agility performance under uncertainties - whether disturbances, estimation noise or parametric errors.</li>
+                                                <li><strong>Integrated Planning:</strong> Developed and integrated multiple global path planners and local planners to ensure efficient, collision-free navigation in constrained environments.</li>
+                                            </ul>
+                                            <a href="#" target="_blank" className={githubButtonStyle}>View on GitHub <Icon name="github" className="w-5 h-5" /></a>
+                                        </div>
+                                        <div className="relative aspect-video bg-black rounded-[2.5rem] overflow-hidden border-2 border-white/10 shadow-2xl flex items-center justify-center">
+                                            <video controls className="w-full h-full object-cover">
+                                                <source src="https://lorkol.github.io/Media/MSC_Projects/Swerve_Controller.mp4" type="video/mp4" />
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* SCARA Drawbot */}
+                                <div className="bg-slate-900/20 rounded-[4rem] p-10 md:p-20 border border-white/5 shadow-2xl relative overflow-hidden group">
+                                    <div className="grid lg:grid-cols-[1fr_1.3fr] gap-20 items-start relative z-10">
+                                        <div>
+                                            <div className="flex flex-wrap gap-2 mb-6">
+                                                <Tag>Image Processing</Tag>
+                                                <Tag>Motion Control</Tag>
+                                                <Tag>Sensor Fusion</Tag>
+                                                <Tag>ROS</Tag>
+                                            </div>
+                                            <h3 className="text-5xl font-black text-white mb-8 tracking-tighter">SCARA Drawbot</h3>
+                                            <p className="text-xl text-slate-400 mb-10 leading-relaxed font-light">Developed an interactive SCARA robotic system that replicates user drawings in real-time, showcasing the integration of computer vision, embedded control, and robotics for human-guided tasks.</p>
+                                            <ul className="space-y-6 text-slate-400 text-lg list-disc list-outside ml-5 mb-10">
+                                                <li><strong>Vision & Tracking:</strong> Implemented Raspberry Pi camera system to track an ArUco marker on a stylus using OpenCV for real-time position detection.</li>
+                                                <li><strong>Sensor Fusion:</strong> Implemented sensor fusion for input from multiple cameras and filtering the signals.</li>
+                                                <li><strong>Software Architecture:</strong> Built on ROS framework for robust inter-process communication and system integration.</li>
+                                                <li><strong>Motion Control:</strong> Applied a singularity robust inverse kinematics algorithm with Jacobian and chain rule to translate tracked positions into precise robotic movements.</li>
+                                                <li><strong>Hardware Integration:</strong> Designed system around Arduino microcontroller and Dynamixel servos for accurate joint control.</li>
+                                                <li><strong>End-Effector Design:</strong> Created custom compliant drawing tool for consistent contact across various drawing surfaces.</li>
+                                            </ul>
+                                            <a href="https://github.com/TheoDfft/SCARA-Drawer" target="_blank" className={githubButtonStyle}>View on GitHub <Icon name="github" className="w-5 h-5" /></a>
+                                        </div>
+                                        <div className="relative aspect-video bg-black rounded-[2.5rem] overflow-hidden border-2 border-white/10 shadow-2xl">
+                                            <video controls className="w-full h-full object-cover"><source src="https://lorkol.github.io/Media/MSC_Projects/scara_drawbot.mp4" type="video/mp4" /></video>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* MSc Projects Bundle */}
+                                <div className="bg-slate-900/40 p-12 md:p-20 rounded-[4rem] border border-white/5 shadow-2xl">
+                                    <h3 className="text-4xl font-black text-white mb-10 tracking-tighter uppercase">M.Sc. Mechatronics Projects</h3>
+                                    <div className="space-y-16">
+                                        {/* RL Project */}
+                                        <div>
+                                            <div className="flex flex-wrap gap-2 mb-4">
+                                                <Tag>MPC</Tag>
+                                                <Tag>MPPI</Tag>
+                                                <Tag>PPO</Tag>
+                                                <Tag>DQN</Tag>
+                                            </div>
+                                            <h4 className="text-3xl font-bold text-blue-300 mb-4">Reinforcement Learning & Optimal Control</h4>
+                                            <p className="text-lg text-slate-400 mb-10 leading-relaxed">Exploring advanced control strategies through model predictive control (MPC) and deep reinforcement learning. This research-focused project implements state-of-the-art algorithms like PPO and DQN within high-fidelity physics simulations like Isaac Sim. The goal is to bridge the gap between simulation and reality for complex robotic tasks, ensuring robust performance under uncertainty and dynamic environmental conditions.</p>
+                                            
+                                            <div className="space-y-8 mb-10">
+                                                <div className="grid md:grid-cols-2 gap-8">
+                                                    <div className="aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center border border-white/10 group relative">
+                                                        <video controls className="w-full h-full object-cover">
+                                                            <source src="https://lorkol.github.io/Media/MSC_Projects/RL/RL_Quadropeds_Rough_Terrain.mp4" type="video/mp4" />
+                                                        </video>
+                                                        <span className="absolute bottom-4 font-mono text-[10px] text-slate-500 uppercase px-2 bg-black/50 rounded">IsaacSim RL</span>
+                                                    </div>
+                                                    <div className="aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center border border-white/10 group relative">
+                                                        <video controls className="w-full h-full object-cover">
+                                                            <source src="https://lorkol.github.io/Media/MSC_Projects/RL/MPC_Drone_with_Wind.mp4" type="video/mp4" />
+                                                        </video>
+                                                        <span className="absolute bottom-4 font-mono text-[10px] text-slate-500 uppercase px-2 bg-black/50 rounded">MPC Drone</span>
+                                                    </div>
+                                                </div>
+                                                <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
+                                                    <div className="aspect-video bg-black rounded-2xl overflow-hidden shadow-xl flex items-center justify-center border border-white/10 group relative">
+                                                        <video controls className="w-full h-full object-cover">
+                                                            <source src="https://lorkol.github.io/Media/MSC_Projects/RL/MPPI_3DoF_Arm.mp4" type="video/mp4" />
+                                                        </video>
+                                                        <span className="absolute bottom-3 font-mono text-[8px] text-slate-500 uppercase px-2 bg-black/50 rounded">MPPI Manipulator</span>
+                                                    </div>
+                                                    <div className="aspect-video bg-black rounded-2xl overflow-hidden shadow-xl flex items-center justify-center border border-white/10 group relative">
+                                                        <video controls className="w-full h-full object-cover">
+                                                            <source src="https://lorkol.github.io/Media/MSC_Projects/RL/Q_Learning_Pendulum_with_Pushes.mp4" type="video/mp4" />
+                                                        </video>
+                                                        <span className="absolute bottom-3 font-mono text-[8px] text-slate-500 uppercase px-2 bg-black/50 rounded">Q-Learning Inverse Pendulum</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <a href="https://github.com/lorkol/RLHW" target="_blank" className={githubButtonStyle}>View on GitHub <Icon name="github" className="w-5 h-5" /></a>
+                                        </div>
+
+                                        {/* Ur10e MuJoCo Simulation */}
+                                        <div className="pt-16 border-t border-white/5">
+                                            <div className="flex flex-wrap gap-2 mb-4">
+                                                <Tag>Mujoco Simulation</Tag>
+                                                <Tag>Motion Control</Tag>
+                                            </div>
+                                            <h4 className="text-3xl font-bold text-blue-300 mb-4">Ur10e MuJoCo Simulation</h4>
+                                            <p className="text-lg text-slate-400 mb-10 leading-relaxed">
+                                                Created a 3D simulation of the game 'Fruit Ninja' using Python, applying principles of physics-based modeling and 3D graphics to develop an interactive and engaging virtual experience.
+                                            </p>
+                                            <div className="grid grid-cols-5 gap-3 mb-10">
+                                                {mujocoGifs.map((url, i) => (
+                                                    <div key={i} className="aspect-video bg-black rounded-xl overflow-hidden shadow-xl border border-white/10 group relative">
+                                                        <img src={url} alt={`Mujoco Feed ${i+1}`} className="w-full h-full object-cover" />
+                                                        <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* 6DOF */}
+                                        <div className="pt-16 border-t border-white/5">
+                                            <div className="flex flex-wrap gap-2 mb-4">
+                                                <Tag>Motion Modelling</Tag>
+                                            </div>
+                                            <h4 className="text-3xl font-bold text-blue-300 mb-4">6DOF Robotic Arm Simulator</h4>
+                                            <p className="text-lg text-slate-400 mb-8 leading-relaxed">Simulator for forward and inverse kinematics of a 6DOF robotic arm. This project involved developing a robust simulator capable of computing the position of each joint and the end-effector based on given joint angles - Forward Kinematics, as well as an Inverse Kinematics function to determine joint angles from desired end-effector positions and orientations, finally providing a visualization of the robot's links.</p>
+                                            <div className="flex justify-center mb-10">
+                                                <img src="https://lorkol.github.io/Media/MSC_Projects/6DOF%20simulator.png" alt="6DOF" className="rounded-2xl max-h-64 border border-white/10" onError={(e) => { e.target.src = "https://placehold.co/600x400/1a202c/a0aec0?text=6DOF+Simulator" }} />
+                                            </div>
+                                            <a href="https://github.com/lorkol/Foundations-Course-Project" target="_blank" className={githubButtonStyle}>View on GitHub <Icon name="github" className="w-5 h-5" /></a>
+                                        </div>
+                                        {/* Hopper */}
+                                        <div className="pt-16 border-t border-white/5">
+                                            <div className="flex flex-wrap gap-2 mb-4">
+                                                <Tag>Motion Planning</Tag>
+                                                <Tag>ROS</Tag>
+                                                <Tag>Simulation</Tag>
+                                            </div>
+                                            <h4 className="text-3xl font-bold text-blue-300 mb-4">3DOF 1-legged robot hopper</h4>
+                                            <p className="text-lg text-slate-400 mb-8 leading-relaxed">Simulation of a 3DOF 1-legged robot hopper and the associated motion planning. This involved implementing advanced motion planning algorithms to optimize the hopping gait for stability and efficiency. The simulation was entirely developed and run within the ROS framework.</p>
+                                            <div className="flex justify-center mb-10">
+                                                <video controls className="w-full max-w-md rounded-3xl overflow-hidden shadow-2xl">
+                                                    <source src="https://lorkol.github.io/Media/MSC_Projects/Hopper.mp4" type="video/mp4" />
+                                                </video>
+                                            </div>
+                                        </div>
+                                        {/* Self Drive */}
+                                        <div className="pt-16 border-t border-white/5">
+                                            <div className="flex flex-wrap gap-2 mb-4">
+                                                <Tag>SLAM</Tag>
+                                                <Tag>Image Processing</Tag>
+                                                <Tag>Sensor Fusion</Tag>
+                                            </div>
+                                            <h4 className="text-3xl font-bold text-blue-300 mb-4">Vertically Integrated Project Self-Drive</h4>
+                                            <p className="text-lg text-slate-400 mb-6 leading-relaxed italic">Researched and implemented various algorithms and libraries and used SLAM with a small robotic vehicle to map and then search for a specific image within a maze.</p>
+                                            <div className="flex justify-center mb-10">
+                                                <img src="https://lorkol.github.io/Media/MSC_Projects/Self%20Drive/2025_Fall.jpg" alt="Self Drive Project" className="rounded-2xl max-h-48 border border-white/10 shadow-xl" />
+                                            </div>
+                                        </div>
+                                        {/* STEP */}
+                                        <div className="pt-16 border-t border-white/5">
+                                            <div className="flex flex-wrap gap-2 mb-4">
+                                                <Tag>RL</Tag>
+                                            </div>
+                                            <h4 className="text-3xl font-bold text-blue-300 mb-4">Vertically Integrated Project STEP</h4>
+                                            <p className="text-lg text-slate-400 mb-10 leading-relaxed">A project focused on developing a humanoid robot with advanced walking capabilities. On the Computer Science team, I utilized RL to train a policy enabling bipedal gait, adapted for sim-to-sim transfer validation. Additionally collaborated with the EE team for motor PI controller tuning.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* BS Project */}
+                                <div className="bg-gradient-to-br from-[#0f172a] to-[#06080c] p-12 md:p-20 rounded-[4rem] border border-blue-500/10 shadow-2xl relative overflow-hidden">
+                                    <div className="flex flex-wrap gap-2 mb-6">
+                                        <Tag>PID Control</Tag>
+                                        <Tag>Motion Modelling</Tag>
+                                    </div>
+                                    <h3 className="text-4xl font-black text-white mb-10 text-center uppercase tracking-tighter">B.S. Final Project</h3>
+                                    <div className="grid lg:grid-cols-[1fr_1.2fr] gap-20 items-center relative z-10">
+                                        <div className="space-y-8 text-xl text-slate-400 leading-relaxed">
+                                            <p>Designed and implemented a self-balancing quadrotor drone control system.</p>
+                                            <ul className="space-y-6 list-disc list-outside ml-6">
+                                                <li>Designed, implemented, and tuned a PID controller over pitch, roll, yaw, and altitude using an IMU and an ultrasonic sensor.</li>
+                                                <li>Incorporated discrete-time control with integrated Low-Pass Filter (LPF).</li>
+                                                <li>Implemented and programmed reading from various sensors.</li>
+                                                <li>Applied a Kalman filter for robust state estimation from an IMU.</li>
+                                                <li>Integrated connectivity with a flight joystick controller for intuitive drone operation.</li>
+                                            </ul>
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-6 group/imgs">
+                                            <img src="https://lorkol.github.io/Media/BSC_Final/quadrotor%20image.png" alt="Drone 1" className="aspect-square bg-slate-900 rounded-[2.5rem] object-cover border border-white/5 shadow-2xl" />
+                                            <img src="https://lorkol.github.io/Media/BSC_Final/Quadrotor%20Body.png" alt="Drone 2" className="aspect-square bg-slate-900 rounded-[2.5rem] object-cover border border-white/5 shadow-2xl" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Hobbies */}
+                        <section>
+                            <SectionHeading icon="compass" id="hobbies">Hobbies</SectionHeading>
+                            <div className="bg-slate-900/40 p-12 rounded-[3rem] border border-white/5 grid grid-cols-1 md:grid-cols-2 gap-12">
+                                <div className="flex flex-col items-center"><span className="text-2xl font-black text-white mb-2 uppercase tracking-widest">Gaming</span></div>
+                                <div className="flex flex-col items-center"><span className="text-2xl font-black text-white mb-2 uppercase tracking-widest text-center">DnD (Dungeons and Dragons)</span></div>
+                                <div className="flex flex-col items-center"><span className="text-2xl font-black text-white mb-6 uppercase tracking-widest">Volleyball</span><img src="https://lorkol.github.io/Media/Hobbies/Volleyball.jpg" className="w-48 h-48 rounded-full object-cover border-4 border-slate-800 shadow-xl" /></div>
+                                <div className="flex flex-col items-center"><span className="text-2xl font-black text-white mb-6 uppercase tracking-widest">Dancing</span><img src="https://lorkol.github.io/Media/Hobbies/Dancing.jpg" className="w-48 h-48 rounded-full object-cover border-4 border-slate-800 shadow-xl" /></div>
+                                <div className="flex flex-col items-center md:col-span-2 mx-auto"><span className="text-2xl font-black text-white mb-6 uppercase tracking-widest text-center">Travel and Hiking</span><img src="https://lorkol.github.io/Media/Hobbies/Hiking.png" className="w-48 h-48 rounded-full object-cover border-4 border-slate-800 shadow-xl" /></div>
+                            </div>
+                        </section>
+
+                        {/* Volunteering */}
+                        <section>
+                            <SectionHeading icon="heart" id="volunteering">Volunteering</SectionHeading>
+                            <div className="bg-slate-900/40 p-8 md:p-10 rounded-3xl border border-white/5 shadow-2xl">
+                                <ul className="space-y-6 text-lg text-slate-400 font-light leading-relaxed list-disc list-outside ml-8">
+                                    <li>Teaching and overseeing a high school robotics team in the design & creation of their robot.</li>
+                                    <li>Mentoring high school student projects for robotics matriculation exams.</li>
+                                    <li className="list-none ml-0">
+                                        <div className="mt-6">
+                                            <h3 className="text-2xl font-black text-white mb-4 uppercase tracking-tighter">Philanthropy Chair, AEPi Fraternity</h3>
+                                            <div className="space-y-4 text-base text-slate-400 leading-relaxed mb-8">
+                                                <p>Organized and led impactful community events. For the elderly, we provided engaging games and activities, including demonstrations of new technology like VR headsets to foster connection and joy. For children's hospitals, we offered various interactive activities such as basic salsa dance classes, juggling performances, and magic tricks to bring smiles and entertainment.</p>
+                                            </div>
+                                            <div className="flex justify-center">
+                                                <img src="https://lorkol.github.io/Media/Elderly%20activities.jpg" className="rounded-2xl border-2 border-slate-800 max-w-xs md:max-w-sm shadow-xl" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </main>
+
+                    <footer className="border-t border-white/5 py-32 px-6 bg-[#030508] relative z-10">
+                        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16">
+                            <div className="text-center md:text-left">
+                                <h2 className="text-5xl font-black text-white mb-6 uppercase tracking-tighter italic">Ethan Niv</h2>
+                                <p className="text-slate-600 text-[10px] tracking-[0.5em] uppercase font-black">© 2026 All rights reserved.</p>
+                            </div>
+                            <div className="flex flex-col items-center md:items-end gap-10">
+                                <div className="flex gap-8">
+                                    <a href="mailto:eitanniv@gmail.com" className="p-5 bg-slate-900/50 rounded-2xl hover:bg-blue-600 transition-all border border-white/5"><Icon name="mail" className="w-7 h-7 text-white" /></a>
+                                    <a href="https://www.linkedin.com/in/eitan-niv-527904203/" target="_blank" className="p-5 bg-slate-900/50 rounded-2xl hover:bg-blue-600 transition-all border border-white/5"><Icon name="linkedin" className="w-7 h-7 text-white" /></a>
+                                    <a href="tel:+19299695684" className="p-5 bg-slate-900/50 rounded-2xl hover:bg-blue-600 transition-all border border-white/5"><Icon name="phone" className="w-7 h-7 text-white" /></a>
+                                </div>
+                                <div className="text-slate-500 font-mono text-[10px] tracking-[0.2em] flex flex-col items-center md:items-end gap-2 uppercase">
+                                    <span>+1 (929) 969-5684</span>
+                                    <span>eitanniv@gmail.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 </html>
