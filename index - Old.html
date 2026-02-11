@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethan Niv - Robotics & Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the Inter font and smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a202c; /* Dark background for the track */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568; /* Greyish thumb */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0; /* Lighter grey on hover */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+    <header class="bg-gray-800 shadow-lg py-4 fixed w-full z-10">
+        <nav class="container mx-auto flex justify-between items-center px-4">
+            <a href="#home" class="text-2xl font-bold text-blue-400 hover:text-blue-300 rounded-md p-2 transition duration-300 ease-in-out">Ethan Niv</a>
+            <div class="space-x-4">
+                <a href="#about" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">About</a>
+                <a href="#education" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">Education</a>
+                <a href="#experience" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">Experience</a>
+                <a href="#skills" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">Skills</a>
+                <a href="#projects" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">Projects</a>
+                <a href="#hobbies" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">Hobbies</a>
+                <a href="#volunteering" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md transition duration-300 ease-in-out">Volunteering</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="h-screen flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900 text-center pt-16">
+        <div class="max-w-4xl mx-auto p-8 bg-gray-800 rounded-xl shadow-2xl transform hover:scale-105 transition duration-500 ease-in-out">
+            <h1 class="text-6xl font-extrabold text-blue-400 mb-4 animate-fade-in-down">Ethan Niv</h1>
+            <p class="text-3xl text-gray-300 mb-6 animate-fade-in-up">Robotics & Software Engineer</p>
+            <p class="text-lg text-gray-400 leading-relaxed animate-fade-in">
+                Passionate about designing and developing real-time control and simulation systems, with expertise in software, hardware, and motion planning.
+            </p>
+            <div class="mt-8 flex justify-center space-x-6">
+                <a href="https://www.linkedin.com/in/eitan-niv-527904203/" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">LinkedIn</a>
+                <a href="mailto:en2456@nyu.edu" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">Email Me</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">About Me</h2>
+            <div class="bg-gray-800 p-8 rounded-xl shadow-xl flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-8">
+                <!-- Portrait Image -->
+                <div class="flex-shrink-0 w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-lg border-4 border-blue-400">
+                    <img src="Media/my_portrait.jpg" alt="Ethan Niv Portrait" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/256x256/4a5568/a0aec0?text=Image+Not+Found'">
+                </div>
+                <!-- About Me Text -->
+                <div>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-4">
+                        I am a dedicated Robotics and Software Engineer with a strong background in designing, developing, and deploying complex real-time control and simulation systems. My expertise spans both hardware and software, with a focus on creating efficient, robust, and safe solutions.
+                    </p>
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        With a Master's in Mechatronics and Robotics from NYU Tandon School of Engineering and a B.S. in Electrical Engineering and Computer Science from Tel Aviv University, I bring a comprehensive understanding of robotics, control theory, and software development to every project. I thrive in rapid R&D environments, adapting to evolving requirements and integrating cutting-edge algorithms.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">Education</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
+                    <h3 class="text-3xl font-semibold text-blue-300 mb-3">New York University Tandon School of Engineering</h3>
+                    <p class="text-xl text-gray-400 mb-2">M.S. in Mechatronics and Robotics</p>
+                    <p class="text-lg text-gray-500 mb-4">Anticipated Graduation: May 2026</p>
+                    <p class="text-lg text-gray-300 mb-4"><strong>Current GPA: 4.0</strong></p>
+                    <h4 class="text-xl font-medium text-gray-300 mb-2">Relevant Courses:</h4>
+                    <ul class="list-disc list-inside text-gray-400 space-y-1">
+                        <li>Foundations of Robotics</li>
+                        <li>Mathematics for Robotics</li>
+                        <li>Advanced Mechatronics</li>
+                        <li>Gait and Manipulation</li>
+                        <li>Vertically Integrated Project: Research on bi-pedal robots (RL Focused)</li>
+                        <li>High-Technology Entrepreneurship</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
+                    <h3 class="text-3xl font-semibold text-blue-300 mb-3">Tel Aviv University</h3>
+                    <p class="text-xl text-gray-400 mb-2">B.S. in Electrical Engineering and Computer Science</p>
+                    <p class="text-lg text-gray-500 mb-4">Graduated: June 2020</p>
+                    <h4 class="text-xl font-medium text-gray-300 mb-2">Relevant Courses:</h4>
+                    <ul class="list-disc list-inside text-gray-400 space-y-1">
+                        <li>Introduction to Control Theory; Control Laboratory</li>
+                        <li>Practical Feedback Systems; Introduction to Digital Control</li>
+                        <li>Introduction to Modern Linear Control Theory</li>
+                        <li>Algorithms for Robotic Motion Planning; Algorithms for Robotic Motion Planning Workshop
+                            <ul class="list-circle list-inside ml-4 text-gray-500">
+                                <li>Final Project: Developed code for path and motion planning for multiple agents in a dynamically built map with obstacles, ensuring optimized, collision-free movement.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">Experience</h2>
+            <div class="space-y-10">
+                <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
+                    <h3 class="text-3xl font-semibold text-blue-300 mb-2">Software Engineer</h3>
+                    <p class="text-xl text-gray-400 mb-1">Zalirian LTD., Tel Aviv, Israel</p>
+                    <p class="text-lg text-gray-500 mb-4">June 2021 - December 2023</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li>Designed and programmed the entirety of the company's main application as the sole programmer, working with the system architect.</li>
+                        <li>Implemented and adapted complex logic requirements from the lead system engineer.</li>
+                        <li>Designed flexible code for adaptive changes in a rapid R&D environment.</li>
+                        <li>Collaborated with algorithm developers to integrate their code into the application.</li>
+                        <li>Developed both FrontEnd (GUI) and BackEnd (infrastructure, hardware communication, data handling).</li>
+                        <li>Interfaced directly with various motor and camera SDKs and drivers.</li>
+                        <li>Developed real-time synchronized solutions involving complex decision-making, axes control, camera captures, and image processing.</li>
+                        <li>Implemented a Motion Planning algorithm to assure movement efficiency and safety in a 5DoF system with physical limitations and obstacles.</li>
+                        <li>Logged data according to priority for debriefing or real-time system engineer/operator use.</li>
+                        <li>Utilized multiprocessing and multithreading.</li>
+                        <li>Applied various design patterns to maximize efficiency, code correctness, and readability.</li>
+                        <li>Developed in both C++ and Python, with interop using Pybind.</li>
+                        <li>Used Git (Azure) for source control.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
+                    <h3 class="text-3xl font-semibold text-blue-300 mb-2">Software and Hardware Developer</h3>
+                    <p class="text-xl text-gray-400 mb-1">Israeli Air Force, Israel</p>
+                    <p class="text-lg text-gray-500 mb-4">October 2018 - April 2021</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li>Developed SW & HW systems designed to improve aircraft safety & maintainability. Additionally, led the project management aspects, including CDR, Gants, budgets, etc.</li>
+                        <li>Designed & developed multiple real-time control and simulation systems, end-to-end - hardware, software, and deployment.</li>
+                        <li>Reverse engineered legacy airborne systems to interface, upgrade, and redesign them.</li>
+                        <li>Interfaced with complex sensory systems to acquire and analyze data, using signal processing to gain critical insights about the accuracy & safety of different aircraft parts.</li>
+                        <li>Provided software & electrical analysis for flight investigation reporting.</li>
+                        <li>Advised and mentored projects by practical engineering college students.</li>
+                        <li>Trained and advised new engineers on the team, helping them to ramp-up to routine work.</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
+                    <h3 class="text-3xl font-semibold text-blue-300 mb-2">Robotics Team Member</h3>
+                    <p class="text-xl text-gray-400 mb-1">FIRST Robotics Competition / Dbug #3316</p>
+                    <p class="text-lg text-gray-500 mb-4">September 2011 - June 2014</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li>Participated in the FRC robotics competition multiple years, actively developing all robot aspects, mainly focusing on software and electronic systems.</li>
+                        <li>Led the programming team of 4 programmers developing the robot's software.</li>
+                        <li>In charge of the electronics for the robot, also contributing to mechanics, modeling, and overall design.</li>
+                        <li>Implemented PID controls, sensor data acquisition, and vision processing.</li>
+                    </ul>
+                    <!-- Media for FIRST Robotics -->
+                    <div class="mt-8 flex flex-wrap justify-center items-center gap-4">
+                        <!-- Images -->
+                        <img src="Media/FRC0.jpg" alt="Robotics Competition Team" class="w-32 h-32 rounded-lg shadow-md object-cover" onerror="this.onerror=null;this.src='https://placehold.co/128x128/1a202c/a0aec0?text=FRC+Image+1';this.alt='FRC Image 1 Not Found'">
+                        <img src="Media/FRC1.jpg" alt="Robot in action" class="w-32 h-32 rounded-lg shadow-md object-cover" onerror="this.onerror=null;this.src='https://placehold.co/128x128/1a202c/a0aec0?text=FRC+Image+2';this.alt='FRC Image 2 Not Found'">
+                        <img src="Media/FRC2.jpg" alt="Team collaborating" class="w-32 h-32 rounded-lg shadow-md object-cover" onerror="this.onerror=null;this.src='https://placehold.co/128x128/1a202c/a0aec0?text=FRC+Image+3';this.alt='FRC Image 3 Not Found'">
+                        <img src="Media/FRC3.jpg" alt="Robot close-up" class="w-32 h-32 rounded-lg shadow-md object-cover" onerror="this.onerror=null;this.src='https://placehold.co/128x128/1a202c/a0aec0?text=FRC+Image+4';this.alt='FRC Image 4 Not Found'">
+                    </div>
+                    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Videos -->
+                        <div class="w-full aspect-video rounded-lg overflow-hidden shadow-lg">
+                            <video controls class="w-full h-full">
+                                <source src="Media/Dbug 2012.mp4" type="video/mp4" onerror="this.parentElement.innerHTML='<p class=\'text-red-400\'>Video not found or unsupported format. Ensure Dbug 2012.mp4 is in the same directory.</p>'">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="w-full aspect-video rounded-lg overflow-hidden shadow-lg">
+                            <video controls class="w-full h-full">
+                                <source src="Media/Dbug 2013.mp4" type="video/mp4" onerror="this.parentElement.innerHTML='<p class=\'text-red-400\'>Video not found or unsupported format. Ensure Dbug 2013.mp4 is in the same directory.</p>'">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">Skills</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
+                    <h3 class="text-3xl font-semibold text-blue-300 mb-4">Software</h3>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2 text-lg">
+                        <li>Python</li>
+                        <li>C++</li>
+                        <li>GIT</li>
+                        <li>OpenCV</li>
+                        <li>Pybind</li>
+                        <li>LabVIEW</li>
+                        <li>PyQt</li>
+                        <li>MatLab</li>
+                        <li>Simulink</li>
+                        <li>ROS</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-900 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
+                    <h3 class="text-3xl font-semibold text-blue-300 mb-4">Technical</h3>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2 text-lg">
+                        <li>Motion Planning</li>
+                        <li>Control Theory</li>
+                        <li>Signal Processing</li>
+                        <li>Sensor and Actuator Integration</li>
+                        <li>Project Management</li>
+                        <li>Client-Development</li>
+                        <li>Requirements Analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">Projects</h2>
+            <div class="space-y-10">
+                <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
+                    <h3 class="text-3xl font-semibold text-blue-300 mb-2">SCARA Drawbot</h3>
+                    <p class="text-lg text-gray-400 mb-4">
+                        Developed an interactive SCARA robotic system that replicates user drawings in real-time, showcasing the integration of computer vision, embedded control, and robotics for human-guided tasks.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2 mb-4">
+                        <li><strong>Vision & Tracking:</strong> Implemented Raspberry Pi camera system to track an ArUco marker on a stylus using OpenCV for real-time position detection.</li>
+                        <li><strong>Sensor Fusion:</strong> Implemented sensor fusion for input from multiple cameras and filtering the signals.</li>
+                        <li><strong>Software Architecture:</strong> Built on ROS framework for robust inter-process communication and system integration.</li>
+                        <li><strong>Motion Control:</strong> Applied a singularity robust inverse kinematics algorithm with Jacobian and chain rule to translate tracked positions into precise robotic movements.</li>
+                        <li><strong>Hardware Integration:</strong> Designed system around Arduino microcontroller and Dynamixel servos for accurate joint control.</li>
+                        <li><strong>End-Effector Design:</strong> Created custom compliant drawing tool for consistent contact across various drawing surfaces.</li>
+                    </ul>
+                    <div class="mt-8 flex flex-col items-center space-y-4">
+                        <!-- Responsive Video Embed -->
+                        <div class="w-full max-w-xs aspect-video rounded-lg overflow-hidden shadow-lg">
+                            <video controls class="w-full h-full">
+                                <source src="Media/scara_drawbot.mp4" type="video/mp4" onerror="this.parentElement.innerHTML='<p class=\'text-red-400\'>Video not found or unsupported format. Ensure scara_drawbot.mp4 is in the same directory as your HTML file.</p>'">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    <a href="https://github.com/TheoDfft/SCARA-Drawer" target="_blank" class="mt-4 text-blue-400 hover:text-blue-300 underline block text-center">View Project on GitHub</a>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
+                    <h3 class="text-3xl font-semibold text-blue-300 mb-2">M.Sc. Mechatronics Projects</h3>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li>Simulator for forward and inverse kinematics of a 6DOF robotic arm. This project involved developing a robust simulator capable of computing the position of each joint and the end-effector based on given joint angles - Forward Kinematics, as well as an Inverse Kinematics function to determine joint angles from desired end-effector positions and orientations, finally providing a visualization of the robot's links.
+                            <a href="https://github.com/lorkol/Foundations-Course-Project" target="_blank" class="text-blue-400 hover:text-blue-300 underline ml-2">View on GitHub</a>
+                        </li>
+                        <div class="flex justify-center mt-4 mb-4">
+                            <img src="Media/6DOF simulator.png" alt="6DOF Robotic Arm Simulator" class="rounded-lg shadow-md w-full max-w-xs" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/a0aec0?text=6DOF+Simulator+Image+Not+Found';this.alt='6DOF Simulator Image Not Found'">
+                        </div>
+                        <li>
+                            Simulation of a 3DOF 1-legged robot hopper and the associated motion planning. This involved implementing advanced motion planning algorithms to optimize the hopping gait for stability and efficiency. The simulation was entirely developed and run within the ROS (Robot Operating System) framework, leveraging its tools for robot modeling, communication, and visualization.
+                            <div class="flex justify-center mt-4 mb-4">
+                                <video controls class="w-full max-w-xs aspect-video rounded-lg overflow-hidden shadow-lg">
+                                    <source src="Media/Hopper.mp4" type="video/mp4" onerror="this.parentElement.innerHTML='<p class=\'text-red-400\'>Video not found or unsupported format. Ensure 3DoF Hopper.mp4 is in the Media directory.</p>'">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Vertically Integrated Project STEP:</strong> A project focused on developing a humanoid robot with advanced walking capabilities. On the Computer Science team, I utilized Reinforcement Learning (RL) to train a policy that enabled the robot to walk, and subsequently adapted this policy for sim-to-sim transfer to validate its performance within a physics engine. Additionally, I collaborated with the Electrical Engineering team, providing expertise in control theory to help them understand and tune the PI controllers for the robot's motors.
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
+                    <h3 class="text-3xl font-semibold text-blue-300 mb-2">B.S. Final Project</h3>
+                    <p class="text-lg text-gray-300 mb-4">
+                        Designed and implemented a self-balancing quadrotor drone control system.
+                    </p>
+                    <div class="flex justify-center gap-4 mb-4 flex-wrap">
+                        <img src="Media/quadrotor image.png" alt="Self-balancing Quadrotor Drone" class="rounded-lg shadow-md w-80 h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/320x320/1a202c/a0aec0?text=Quadrotor+Image+1';this.alt='Quadrotor Image 1 Not Found'">
+                        <img src="Media/Quadrotor Body.png" alt="Quadrotor Body" class="rounded-lg shadow-md w-80 h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/320x320/1a202c/a0aec0?text=Quadrotor+Image+2';this.alt='Quadrotor Body Image Not Found'">
+                    </div>
+                    <ul class="list-disc list-inside text-gray-300 space-y-2">
+                        <li>Designed, implemented, and tuned a PID controller over pitch, roll, yaw, and altitude using an IMU and an ultrasonic sensor.</li>
+                        <li>Incorporated discrete-time control, taking into consideration the controller frequency, and added a Low-Pass Filter (LPF).</li>
+                        <li>Implemented and programmed reading from various sensors.</li>
+                        <li>Applied a Kalman filter for robust state estimation from an IMU.</li>
+                        <li>Integrated connectivity with a flight joystick controller for intuitive drone operation.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hobbies" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">Hobbies</h2>
+            <div class="bg-gray-900 p-8 rounded-xl shadow-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <div class="flex flex-col items-center space-y-4">
+                    <span class="text-lg font-semibold text-gray-300">Gaming</span>
+                </div>
+                <div class="flex flex-col items-center space-y-4">
+                    <span class="text-lg font-semibold text-gray-300">DnD (Dungeons and Dragons)</span>
+                </div>
+                <div class="flex flex-col items-center space-y-4">
+                    <span class="text-lg font-semibold text-gray-300">Volleyball</span>
+                    <img src="Media/Volleyball.jpg" alt="Volleyball Icon" class="w-48 h-48 rounded-full object-cover">
+                </div>
+                <div class="flex flex-col items-center space-y-4">
+                    <span class="text-lg font-semibold text-gray-300">Dancing</span>
+                    <img src="Media/Dancing.jpg" alt="Dancing Icon" class="w-48 h-48 rounded-full object-cover">
+                </div>
+                <div class="flex flex-col items-center space-y-4 md:col-span-2 mx-auto">
+                    <span class="text-lg font-semibold text-gray-300">Travel and Hiking</span>
+                    <img src="Media/Hiking.png" alt="Hiking Icon" class="w-48 h-48 rounded-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/192x192/1a202c/a0aec0?text=Hiking+Image+Not+Found'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="volunteering" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-5xl font-bold text-center text-blue-400 mb-12">Volunteering</h2>
+            <div class="bg-gray-800 p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 ease-in-out">
+                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                    <li>Teaching and overseeing a high school robotics team in the design & creation of their robot, helping the team to navigate the project and overcome obstacles along the way.</li>
+                    <li>Mentoring high school student projects for robotics matriculation exams.</li>
+                    <li>
+                        <strong>Philanthropy Chair, AEPi Fraternity:</strong> Organized and led impactful community events. For the elderly, we provided engaging games and activities, including demonstrations of new technology like VR headsets to foster connection and joy. For children's hospitals, we offered various interactive activities such as basic salsa dance classes, juggling performances, and magic tricks to bring smiles and entertainment.
+                        <div class="flex justify-center mt-4 mb-4">
+                            <img src="Media/Elderly activities.jpg" alt="Philanthropy Event" class="rounded-lg shadow-md w-full max-w-xs" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/a0aec0?text=Philanthropy+Image+Not+Found';this.alt='Philanthropy Image Not Found'">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 py-8 text-center text-gray-400">
+        <p>&copy; 2025 Ethan Niv. All rights reserved.</p>
+        <p class="mt-2">
+            <a href="mailto:en2456@nyu.edu" class="hover:text-blue-400 transition duration-300 ease-in-out">en2456@nyu.edu</a> |
+            <a href="tel:+19299695684" class="hover:text-blue-400 transition duration-300 ease-in-out">(929) 969-5684</a> |
+            <a href="https://www.linkedin.com/in/eitan-niv-527904203/" target="_blank" class="hover:text-blue-400 transition duration-300 ease-in-out">LinkedIn</a>
+        </p>
+    </footer>
+</body>
+</html>
