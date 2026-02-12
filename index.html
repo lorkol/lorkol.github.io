@@ -517,9 +517,7 @@
                                             <a href="https://github.com/TheoDfft/SCARA-Drawer" target="_blank" className={githubButtonStyle}>View on GitHub <Icon name="github" className="w-5 h-5" /></a>
                                         </div>
                                         <div className="relative aspect-video bg-black rounded-[2.5rem] overflow-hidden border-2 border-white/10 shadow-2xl">
-                                            <video autoPlay muted loop playsInline controls className="w-full h-full object-cover">
-                                                <source src="https://lorkol.github.io/Media/MSC_Projects/scara_drawbot.mp4" type="video/mp4" />
-                                            </video>
+                                            <video autoPlay muted loop playsInline controls className="w-full h-full object-cover"><source src="https://lorkol.github.io/Media/MSC_Projects/scara_drawbot.mp4" type="video/mp4" /></video>
                                         </div>
                                     </div>
                                 </div>
@@ -529,7 +527,7 @@
                                     <h3 className="text-4xl font-black text-white mb-10 tracking-tighter uppercase">M.Sc. Mechatronics Projects</h3>
                                     <div className="space-y-16">
                                         
-                                        {/* Reordered: 1. Vertically Integrated Project Self-Drive */}
+                                        {/* Vertically Integrated Project Self-Drive */}
                                         <div className="pt-8 text-center">
                                             <div className="flex flex-wrap justify-center gap-2 mb-2">
                                                 <Tag>SLAM</Tag> <Tag>Sensor Fusion</Tag> <Tag>Python</Tag> <Tag>ROS</Tag>
@@ -551,7 +549,7 @@
                                             <img src="https://lorkol.github.io/Media/MSC_Projects/Self%20Drive/2025_Fall.jpg" alt="Self Drive Project" className="rounded-2xl max-h-48 border border-white/10 shadow-xl mx-auto" />
                                         </div>
 
-                                        {/* Reordered: 2. Ur10e MuJoCo Simulation */}
+                                        {/* Ur10e MuJoCo Simulation */}
                                         <div className="pt-16 border-t border-white/10">
                                             <div className="flex flex-wrap gap-2 mb-4">
                                                 <Tag>Mujoco Simulation</Tag>
@@ -571,7 +569,7 @@
                                             </div>
                                         </div>
 
-                                        {/* Reordered: 3. 3DOF 1-legged robot hopper */}
+                                        {/* 3DOF 1-legged robot hopper */}
                                         <div className="pt-16 border-t border-white/10 text-center">
                                             <Tag>Motion Planning</Tag> <Tag>ROS</Tag> <Tag>Simulation</Tag>
                                             <h4 className="text-3xl font-bold text-blue-300 mb-4 mt-2">3DOF 1-legged robot hopper</h4>
@@ -581,7 +579,7 @@
                                             </video>
                                         </div>
 
-                                        {/* Reordered: 4. 6DOF Robotic Arm Simulator (NOW AFTER HOPPER) */}
+                                        {/* 6DOF Robotic Arm Simulator */}
                                         <div className="pt-16 border-t border-white/10 grid md:grid-cols-[1.5fr_1fr] gap-10 items-center">
                                             <div className="text-left">
                                                 <Tag>Motion Modelling</Tag>
@@ -603,7 +601,7 @@
                                             </div>
                                         </div>
 
-                                        {/* 5. Vertically Integrated Project STEP */}
+                                        {/* STEP */}
                                         <div className="pt-16 border-t border-white/10">
                                             <div className="flex flex-wrap justify-center gap-2 mb-4">
                                                 <Tag>RL</Tag>
@@ -653,7 +651,6 @@
                                             {["Optimization and Reinforcement learning", "Autonomous Robotic Vehicles", "Vertically Integrated Project: Self Drive- implementing SLAM", "Vertically Integrated Project: Research on bi-pedal robots (RL Focused)", "Foundations of Robotics", "Mathematics for Robotics", "Advanced Mechatronics", "Gait and Manipulation", "High-Technology Entrepreneurship"].map(c => <li key={c}>{c}</li>)}
                                         </ul>
                                     </div>
-                                    {/* Bottom Center Large Logo */}
                                     <div className="mt-auto flex justify-center w-full pt-10">
                                         <img src="https://lorkol.github.io/Media/Logos/NYU.jpg" alt="NYU Logo" className="w-1/2 h-auto rounded-xl shadow-2xl border border-white/10" />
                                     </div>
@@ -676,7 +673,6 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    {/* Bottom Center Large Logo with White Background for TAU */}
                                     <div className="mt-auto flex justify-center w-full pt-10">
                                         <div className="bg-white p-6 rounded-xl shadow-2xl w-1/2 flex justify-center items-center overflow-hidden">
                                             <img src="https://lorkol.github.io/Media/Logos/TAU.png" alt="TAU Logo" className="w-full h-auto object-contain" />
@@ -686,7 +682,7 @@
                             </div>
                         </section>
 
-                        {/* Skills */}
+                        {/* Skills (Moved below Education) */}
                         <section>
                             <SectionHeading icon="award" id="skills">Skills</SectionHeading>
                             <div className="grid md:grid-cols-2 gap-10">
@@ -777,9 +773,16 @@
                             <SectionHeading icon="heart" id="volunteering">Volunteering</SectionHeading>
                             <div className="bg-slate-900/40 p-8 md:p-10 rounded-3xl border border-white/5 shadow-2xl">
                                 <ul className="space-y-6 text-lg text-white font-light leading-relaxed list-disc list-outside ml-8">
-                                    <li>Teaching and overseeing a high school robotics team and mentoring student projects.</li>
-                                    <li>Philanthropy Chair, AEPi Fraternity.</li>
-                                    <img src="https://lorkol.github.io/Media/Elderly%20activities.jpg" className="rounded-2xl border-2 border-slate-800 max-xs md:max-w-sm shadow-xl mx-auto block mt-6" />
+                                    <li>Taught and oversaw a high school robotics team in the design & creation of their robot, helping the team to navigate the project and overcome obstacles along the way.</li>
+                                    <li>Mentored high school student projects for robotics matriculation exams.</li>
+                                    <li>
+                                        Philanthropy Chair, AEPi Fraternity: Organized and led impactful community events. For the elderly, we provided engaging games and activities, including demonstrations of new technology like VR headsets to foster connection and joy. For children's hospitals, we offered various interactive activities such as basic salsa dance classes, juggling performances, and magic tricks to bring smiles and entertainment.
+                                    </li>
+                                    <li className="list-none ml-0">
+                                        <div className="flex justify-center mt-6">
+                                            <img src="https://lorkol.github.io/Media/Elderly%20activities.jpg" alt="Elderly activities" className="rounded-2xl border-2 border-slate-800 max-xs md:max-w-sm shadow-xl" />
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </section>
