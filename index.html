@@ -210,7 +210,7 @@
         };
 
         const Tag = ({ children }) => (
-            <span className="px-2 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-[9px] font-bold tracking-widest uppercase whitespace-nowrap">
+            <span className="px-2 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[9px] font-bold tracking-widest uppercase whitespace-nowrap">
                 {children}
             </span>
         );
@@ -361,18 +361,34 @@
                                     </p>
                                 </div>
 
-                                {/* --- RESUME BLOCK --- */}
-                                <a 
-                                    href="https://lorkol.github.io/Files/Ethan_Niv_Resume.pdf" 
-                                    target="_blank" 
-                                    className="group relative flex items-center gap-4 p-5 rounded-2xl bg-slate-900/40 border border-blue-500/20 hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-500 w-fit overflow-hidden"
-                                >
-                                    <div className="p-3 bg-blue-500/20 rounded-xl group-hover:bg-blue-500 transition-all duration-500">
-                                        <Icon name="file-text" className="w-6 h-6 text-blue-400 group-hover:text-white" />
-                                    </div>
-                                    <span className="text-xl font-black text-white tracking-tighter uppercase group-hover:translate-x-1 transition-transform pr-4">Resume</span>
-                                    <div className="absolute inset-0 bg-blue-500/5 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                                </a>
+                                {/* --- DOCUMENT BLOCKS --- */}
+                                <div className="flex flex-wrap gap-4 relative z-10">
+                                    {/* Resume Button */}
+                                    <a 
+                                        href="https://lorkol.github.io/Files/Ethan_Niv_Resume.pdf" 
+                                        target="_blank" 
+                                        className="group relative flex items-center gap-4 p-5 rounded-2xl bg-slate-900/40 border border-blue-500/20 hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-500 w-fit overflow-hidden shadow-lg"
+                                    >
+                                        <div className="p-3 bg-blue-500/20 rounded-xl group-hover:bg-blue-500 transition-all duration-500">
+                                            <Icon name="file-text" className="w-6 h-6 text-blue-400 group-hover:text-white" />
+                                        </div>
+                                        <span className="text-xl font-black text-white tracking-tighter uppercase group-hover:translate-x-1 transition-transform pr-4">Resume</span>
+                                        <div className="absolute inset-0 bg-blue-500/5 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    </a>
+
+                                    {/* CV Button */}
+                                    <a 
+                                        href="https://lorkol.github.io/Files/Ethan_Niv_CV.pdf" 
+                                        target="_blank" 
+                                        className="group relative flex items-center gap-4 p-5 rounded-2xl bg-slate-900/40 border border-blue-500/20 hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-500 w-fit overflow-hidden shadow-lg"
+                                    >
+                                        <div className="p-3 bg-blue-500/20 rounded-xl group-hover:bg-blue-500 transition-all duration-500">
+                                            <Icon name="file-text" className="w-6 h-6 text-blue-400 group-hover:text-white" />
+                                        </div>
+                                        <span className="text-xl font-black text-white tracking-tighter uppercase group-hover:translate-x-1 transition-transform pr-4">CV</span>
+                                        <div className="absolute inset-0 bg-blue-500/5 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    </a>
+                                </div>
                             </div>
                         </section>
 
@@ -484,7 +500,7 @@
                                             <p className="text-xl text-white mb-10 leading-relaxed font-light">
                                                 Developed a specialized, robust, and modular control system for an omnidirectional swerve-drive robotic vehicle. The architecture enables the implementation and real-time switching between multiple robust and adaptive controllers, tailored for diverse dynamic conditions.
                                             </p>
-                                            <ul className="space-y-6 text-slate-100 text-lg list-disc list-outside ml-5 mb-10 font-light">
+                                            <ul className="space-y-6 text-slate-300 text-lg list-disc list-outside ml-5 mb-10 font-light">
                                                 <li><strong>Modular Architecture:</strong> Designed a highly modular framework that enables plug-and-play functionality, allowing for the easy switching and integration of various planners and controllers in a seamless manner.</li>
                                                 <li><strong>Robust & Adaptive Control:</strong> Implemented a suite of multiple robust and adaptive controllers to maintain high-agility performance under uncertainties - whether disturbances, estimation noise or parametric errors.</li>
                                                 <li><strong>Integrated Planning:</strong> Developed and integrated multiple global path planners and local planners to ensure efficient, collision-free navigation in constrained environments.</li>
