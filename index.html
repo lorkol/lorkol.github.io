@@ -644,17 +644,25 @@
                                             </div>
                                         </div>
                                         {/* Self Drive */}
-                                        <div className="pt-16 border-t border-white/10">
-                                            <div className="flex flex-wrap gap-2 mb-4">
-                                                <Tag>SLAM</Tag>
-                                                <Tag>Image Processing</Tag>
-                                                <Tag>Sensor Fusion</Tag>
+                                        <div className="pt-16 border-t border-white/10 text-center">
+                                            <div className="flex flex-wrap justify-center gap-2 mb-2">
+                                                <Tag>SLAM</Tag> <Tag>Sensor Fusion</Tag> <Tag>Python</Tag> <Tag>ROS</Tag>
                                             </div>
-                                            <h4 className="text-3xl font-bold text-blue-300 mb-4">Vertically Integrated Project Self-Drive</h4>
-                                            <p className="text-lg text-white mb-6 leading-relaxed italic font-light">Researched and implemented various algorithms and libraries and used SLAM with a small robotic vehicle to map and then search for a specific image within a maze.</p>
-                                            <div className="flex justify-center mb-10">
-                                                <img src="https://lorkol.github.io/Media/MSC_Projects/Self%20Drive/2025_Fall.jpg" alt="Self Drive Project" className="rounded-2xl max-h-48 border border-white/10 shadow-xl" />
+                                            <h4 className="text-3xl font-bold text-blue-300 mb-4 mt-2">Vertically Integrated Project Self-Drive</h4>
+                                            
+                                            <div className="max-w-4xl mx-auto text-left mb-8">
+                                                <p className="text-lg text-white mb-6 leading-relaxed italic font-light text-center">
+                                                    Researched and implemented various SLAM algorithms with a small differential drive robotic vehicle to map and navigate a maze.
+                                                </p>
+                                                <ul className="space-y-3 text-slate-100 text-base leading-relaxed list-disc list-outside ml-8 font-light">
+                                                    <li>Developing software in <strong>Python</strong> and <strong>ROS</strong> for Visual-Inertial-Odometry (VIO) SLAM on a differential drive robot.</li>
+                                                    <li>Implemented a <strong>Visual-Inertial-Odometry SLAM</strong> algorithm for a monocular camera, IMU, and wheel encoders based on <strong>OpenVINS</strong>.</li>
+                                                    <li>Achieved online localization and navigation based on sensor fusion through a custom-made <strong>Extended Kalman Filter (EKF)</strong>.</li>
+                                                    <li>Generated and optimized a <strong>3D point-cloud map</strong> for high-fidelity visualization and autonomous maze navigation.</li>
+                                                </ul>
                                             </div>
+
+                                            <img src="https://lorkol.github.io/Media/MSC_Projects/Self%20Drive/2025_Fall.jpg" alt="Self Drive Project" className="rounded-2xl max-h-48 border border-white/10 shadow-xl mx-auto" />
                                         </div>
                                         {/* STEP */}
                                         <div className="pt-16 border-t border-white/10">
