@@ -135,36 +135,26 @@
 
             useEffect(() => {
                 const handleMouseMove = (e) => {
-                    // Coordinates relative to joint base (100px from right, 100px from top)
                     const tx = e.clientX - (window.innerWidth - 100);
                     const ty = e.clientY - 100;
-                    
-                    const dist = Math.sqrt(tx * tx + ty * ty);
                     const angleToTarget = Math.atan2(ty, tx);
-                    
-                    // IK for 3-DOF: Fix EE orientation to point from base to mouse
                     const phi = angleToTarget; 
                     const j2TargetX = tx - L3 * Math.cos(phi);
                     const j2TargetY = ty - L3 * Math.sin(phi);
-                    
                     const dist2 = Math.sqrt(j2TargetX**2 + j2TargetY**2);
                     const reach2 = L1 + L2;
                     const clampedX2 = dist2 > reach2 ? (j2TargetX / dist2) * reach2 : j2TargetX;
                     const clampedY2 = dist2 > reach2 ? (j2TargetY / dist2) * reach2 : j2TargetY;
-
-                    // 2-DOF solver for the first two links
                     const D = (clampedX2**2 + clampedY2**2 - L1**2 - L2**2) / (2 * L1 * L2);
                     const q2 = Math.atan2(Math.sqrt(Math.max(0, 1 - D**2)), D);
                     const q1 = Math.atan2(clampedY2, clampedX2) - Math.atan2(L2 * Math.sin(q2), L1 + L2 * Math.cos(q2));
                     const q3 = phi - (q1 + q2);
-                    
                     setArmState({ q1, q2, q3 });
                 };
                 window.addEventListener('mousemove', handleMouseMove);
                 return () => window.removeEventListener('mousemove', handleMouseMove);
             }, []);
 
-            // Forward Kinematics for Rendering
             const j1x = basePos.x + L1 * Math.cos(armState.q1);
             const j1y = basePos.y + L1 * Math.sin(armState.q1);
             const j2x = j1x + L2 * Math.cos(armState.q1 + armState.q2);
@@ -177,21 +167,12 @@
                     <defs>
                         <filter id="glow"><feGaussianBlur stdDeviation="3.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                     </defs>
-                    {/* Base Joint */}
                     <circle cx={basePos.x} cy={basePos.y} r="12" fill="#1e293b" stroke="#3b82f6" strokeWidth="2" />
-                    
-                    {/* Link 1 */}
                     <line x1={basePos.x} y1={basePos.y} x2={j1x} y2={j1y} stroke="#3b82f6" strokeWidth="10" strokeLinecap="round" filter="url(#glow)" />
-                    {/* Link 2 */}
                     <line x1={j1x} y1={j1y} x2={j2x} y2={j2y} stroke="#3b82f6" strokeWidth="7" strokeLinecap="round" filter="url(#glow)" />
-                    {/* Link 3 */}
                     <line x1={j2x} y1={j2y} x2={eex} y2={eey} stroke="#3b82f6" strokeWidth="5" strokeLinecap="round" filter="url(#glow)" />
-                    
-                    {/* Joints */}
                     <circle cx={j1x} cy={j1y} r="8" fill="#0f172a" stroke="#3b82f6" strokeWidth="2" />
                     <circle cx={j2x} cy={j2y} r="6" fill="#0f172a" stroke="#3b82f6" strokeWidth="2" />
-                    
-                    {/* End Effector */}
                     <circle cx={eex} cy={eey} r="6" fill="#ef4444" filter="url(#glow)" />
                 </svg>
             );
@@ -547,14 +528,37 @@
                                 <div className="bg-slate-900/40 p-12 md:p-20 rounded-[4rem] border border-white/5 shadow-2xl">
                                     <h3 className="text-4xl font-black text-white mb-10 tracking-tighter uppercase">M.Sc. Mechatronics Projects</h3>
                                     <div className="space-y-16">
-                                        {/* Ur10e MuJoCo Simulation */}
-                                        <div className="pt-8">
+                                        
+                                        {/* Reordered: 1. Vertically Integrated Project Self-Drive */}
+                                        <div className="pt-8 text-center">
+                                            <div className="flex flex-wrap justify-center gap-2 mb-2">
+                                                <Tag>SLAM</Tag> <Tag>Sensor Fusion</Tag> <Tag>Python</Tag> <Tag>ROS</Tag>
+                                            </div>
+                                            <h4 className="text-3xl font-bold text-blue-300 mb-4 mt-2">Vertically Integrated Project Self-Drive</h4>
+                                            
+                                            <div className="max-w-4xl mx-auto text-left mb-8">
+                                                <p className="text-lg text-white mb-6 leading-relaxed italic font-light text-center">
+                                                    Researched and implemented various SLAM algorithms with a small differential drive robotic vehicle to map and navigate a maze.
+                                                </p>
+                                                <ul className="space-y-3 text-slate-100 text-base leading-relaxed list-disc list-outside ml-8 font-light">
+                                                    <li>Developing software in <strong>Python</strong> and <strong>ROS</strong> for Visual-Inertial-Odometry SLAM on a differential drive robot.</li>
+                                                    <li>Implemented a <strong>Visual-Inertial-Odometry SLAM</strong> algorithm for a monocular camera, IMU, and wheel encoders based on <strong>OpenVINS</strong>.</li>
+                                                    <li>Achieved online localization and navigation based on sensor fusion through a custom-made <strong>Extended Kalman Filter (EKF)</strong>.</li>
+                                                    <li>Generated and optimized a <strong>3D point-cloud map</strong> for high-fidelity visualization and autonomous maze navigation.</li>
+                                                </ul>
+                                            </div>
+
+                                            <img src="https://lorkol.github.io/Media/MSC_Projects/Self%20Drive/2025_Fall.jpg" alt="Self Drive Project" className="rounded-2xl max-h-48 border border-white/10 shadow-xl mx-auto" />
+                                        </div>
+
+                                        {/* Reordered: 2. Ur10e MuJoCo Simulation */}
+                                        <div className="pt-16 border-t border-white/10">
                                             <div className="flex flex-wrap gap-2 mb-4">
                                                 <Tag>Mujoco Simulation</Tag>
                                                 <Tag>Motion Control</Tag>
                                             </div>
                                             <h4 className="text-3xl font-bold text-blue-300 mb-4">Ur10e MuJoCo Simulation</h4>
-                                            <p className="text-lg text-white mb-10 leading-relaxed font-light">
+                                            <p className="text-lg text-white mb-10 leading-relaxed font-light text-left">
                                                 Created a 3D simulation of the game 'Fruit Ninja' using MuJoCo and Python.
                                             </p>
                                             <div className="grid grid-cols-5 gap-3 mb-10">
@@ -567,7 +571,17 @@
                                             </div>
                                         </div>
 
-                                        {/* 6DOF Robotic Arm Simulator (RESTRUCTURED) */}
+                                        {/* Reordered: 3. 3DOF 1-legged robot hopper */}
+                                        <div className="pt-16 border-t border-white/10 text-center">
+                                            <Tag>Motion Planning</Tag> <Tag>ROS</Tag> <Tag>Simulation</Tag>
+                                            <h4 className="text-3xl font-bold text-blue-300 mb-4 mt-2">3DOF 1-legged robot hopper</h4>
+                                            <p className="text-lg text-white mb-8 leading-relaxed font-light text-left">Simulation of a 3DOF 1-legged robot hopper and the associated motion planning. This involved implementing advanced motion planning algorithms to optimize the hopping gait for stability and efficiency. The simulation was entirely developed and run within the ROS framework.</p>
+                                            <video autoPlay muted loop playsInline controls className="w-full max-w-md rounded-3xl overflow-hidden shadow-2xl mx-auto">
+                                                <source src="https://lorkol.github.io/Media/MSC_Projects/Hopper.mp4" type="video/mp4" />
+                                            </video>
+                                        </div>
+
+                                        {/* Reordered: 4. 6DOF Robotic Arm Simulator (NOW AFTER HOPPER) */}
                                         <div className="pt-16 border-t border-white/10 grid md:grid-cols-[1.5fr_1fr] gap-10 items-center">
                                             <div className="text-left">
                                                 <Tag>Motion Modelling</Tag>
@@ -589,39 +603,7 @@
                                             </div>
                                         </div>
 
-                                        {/* Hopper */}
-                                        <div className="pt-16 border-t border-white/10 text-center">
-                                            <Tag>Motion Planning</Tag> <Tag>ROS</Tag> <Tag>Simulation</Tag>
-                                            <h4 className="text-3xl font-bold text-blue-300 mb-4 mt-2">3DOF 1-legged robot hopper</h4>
-                                            <p className="text-lg text-white mb-8 leading-relaxed font-light text-left">Simulation of a 3DOF 1-legged robot hopper and the associated motion planning. This involved implementing advanced motion planning algorithms to optimize the hopping gait for stability and efficiency. The simulation was entirely developed and run within the ROS framework.</p>
-                                            <video autoPlay muted loop playsInline controls className="w-full max-w-md rounded-3xl overflow-hidden shadow-2xl mx-auto">
-                                                <source src="https://lorkol.github.io/Media/MSC_Projects/Hopper.mp4" type="video/mp4" />
-                                            </video>
-                                        </div>
-
-                                        {/* Self Drive Project (VIP) */}
-                                        <div className="pt-16 border-t border-white/10 text-center">
-                                            <div className="flex flex-wrap justify-center gap-2 mb-2">
-                                                <Tag>SLAM</Tag> <Tag>Sensor Fusion</Tag> <Tag>Python</Tag> <Tag>ROS</Tag>
-                                            </div>
-                                            <h4 className="text-3xl font-bold text-blue-300 mb-4 mt-2">Vertically Integrated Project Self-Drive</h4>
-                                            
-                                            <div className="max-w-4xl mx-auto text-left mb-8">
-                                                <p className="text-lg text-white mb-6 leading-relaxed italic font-light text-center">
-                                                    Researched and implemented various SLAM algorithms with a small differential drive robotic vehicle to map and navigate a maze.
-                                                </p>
-                                                <ul className="space-y-3 text-slate-100 text-base leading-relaxed list-disc list-outside ml-8 font-light">
-                                                    <li>Developing software in <strong>Python</strong> and <strong>ROS</strong> for Visual-Inertial-Odometry SLAM on a differential drive robot.</li>
-                                                    <li>Implemented a <strong>Visual-Inertial-Odometry SLAM</strong> algorithm for a monocular camera, IMU, and wheel encoders based on <strong>OpenVINS</strong>.</li>
-                                                    <li>Achieved online localization and navigation based on sensor fusion through a custom-made <strong>Extended Kalman Filter (EKF)</strong>.</li>
-                                                    <li>Generated and optimized a <strong>3D point-cloud map</strong> for high-fidelity visualization and autonomous maze navigation.</li>
-                                                </ul>
-                                            </div>
-
-                                            <img src="https://lorkol.github.io/Media/MSC_Projects/Self%20Drive/2025_Fall.jpg" alt="Self Drive Project" className="rounded-2xl max-h-48 border border-white/10 shadow-xl mx-auto" />
-                                        </div>
-
-                                        {/* STEP */}
+                                        {/* 5. Vertically Integrated Project STEP */}
                                         <div className="pt-16 border-t border-white/10">
                                             <div className="flex flex-wrap justify-center gap-2 mb-4">
                                                 <Tag>RL</Tag>
@@ -704,7 +686,7 @@
                             </div>
                         </section>
 
-                        {/* Skills (Moved below Education) */}
+                        {/* Skills */}
                         <section>
                             <SectionHeading icon="award" id="skills">Skills</SectionHeading>
                             <div className="grid md:grid-cols-2 gap-10">
