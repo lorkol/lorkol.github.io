@@ -24,7 +24,6 @@
         ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
         .animate-spin-custom { animation: spin-slow 20s linear infinite; }
         
-        /* Hide scrollbar for toolbar but allow functionality */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -33,7 +32,6 @@
             scrollbar-width: none;
         }
 
-        /* Fallback for icons before Lucide loads */
         [data-lucide] {
             width: 24px;
             height: 24px;
@@ -377,7 +375,7 @@
                                             <h3 className="text-4xl font-black text-white mb-2">Robotics Graduate Teaching Assistant</h3>
                                             <p className="text-2xl text-blue-500 font-bold tracking-tight">NYU Tandon School of Engineering, New York City</p>
                                         </div>
-                                        <div className="text-slate-200 font-mono text-xs uppercase bg-slate-900 px-4 py-2 rounded-lg border border-white/10">September 2025 - Present</div>
+                                        <div className="text-slate-200 font-mono text-xs uppercase bg-slate-900 px-4 py-2 rounded-lg border border-white/10">September 2025 - May 2026</div>
                                     </div>
                                     <ul className="space-y-4 text-slate-100 text-lg leading-relaxed max-w-5xl list-disc list-outside ml-5 font-light">
                                         <li>Supported graduate-level robotics coursework: <strong>Mechatronics, Dynamics, Math for Robotics,</strong> and <strong>Foundations of Robotics</strong>.</li>
@@ -419,6 +417,28 @@
                         <section>
                             <SectionHeading icon="zap" id="projects">Projects</SectionHeading>
                             <div className="space-y-24">
+                                {/* MS.C Final Project: Collision Mitigation with MPPI */}
+                                <div className="bg-slate-900/20 rounded-[4rem] p-10 md:p-20 border border-blue-500/20 shadow-2xl relative overflow-hidden group">
+                                    <div className="grid lg:grid-cols-[1fr_1.3fr] gap-20 items-start relative z-10">
+                                        <div>
+                                            <div className="flex flex-wrap gap-2 mb-6">
+                                                <Tag>ROS2</Tag><Tag>NAV2</Tag><Tag>MPPI</Tag><Tag>PATH PLANNING</Tag><Tag>CONTROL</Tag><Tag>C++</Tag><Tag>DOCKER</Tag><Tag>GAZEBO</Tag><Tag>MUJOCO</Tag>
+                                            </div>
+                                            <h3 className="text-5xl font-black text-white mb-8 tracking-tighter">MS.C Final Project: Collision Mitigation with MPPI</h3>
+                                            <p className="text-xl text-white mb-10 leading-relaxed font-light">
+                                                Designed and implemented a collision mitigation strategy for autonomous vehicles in case of imminent collision. Integrated into the <strong>Nav2 library</strong>, I developed a <strong>custom multi-stage MPPI controller</strong> and created custom plugins for calculating surface normals of obstacles.
+                                            </p>
+                                            <ul className="space-y-4 text-slate-300 text-lg list-disc list-outside ml-5 mb-10 font-light">
+                                                <li>Developed a <strong>custom critic</strong> and bespoke controller architecture for the MPPI stack to optimize safety trajectories.</li>
+                                                <li>Deeply integrated with <strong>Nav2 Behavioral Trees</strong> to orchestrate and automate replicable collision scenarios for rigorous validation.</li>
+                                                <li>Designed robust <strong>Gazebo testing environments</strong> that manage algorithm randomness for repeatable benchmarks.</li>
+                                                <li>Engineered a <strong>Docker container</strong> for full system replicability and streamlined deployment.</li>
+                                            </ul>
+                                            <a href="#" target="_blank" className={githubButtonStyle}>View on GitHub <Icon name="github" className="w-5 h-5" /></a>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 {/* Swerve Vehicle */}
                                 <div className="bg-slate-900/20 rounded-[4rem] p-10 md:p-20 border border-blue-500/20 shadow-2xl relative overflow-hidden group">
                                     <div className="grid lg:grid-cols-[1fr_1.3fr] gap-20 items-start relative z-10">
@@ -527,6 +547,27 @@
                                     <h3 className="text-4xl font-black text-white mb-10 tracking-tighter uppercase">M.Sc. Mechatronics Projects</h3>
                                     <div className="space-y-16">
                                         
+                                        {/* Localization and Navigation */}
+                                        <div className="grid lg:grid-cols-[1fr_1.3fr] gap-10 items-start relative z-10">
+                                                <div>
+                                                    <div className="flex flex-wrap gap-2 mb-6">
+                                                        <Tag>Sensor Fusion</Tag>
+                                                        <Tag>Particle Filter</Tag>
+                                                        <Tag>EKF</Tag>
+                                                        <Tag>Lidar</Tag>
+                                                        <Tag>Image Processing</Tag>
+                                                    </div>
+                                                    <h4 className="text-3xl font-bold text-blue-300 mb-4 mt-2">Localization and Navigation</h4>
+                                                    <p className="text-lg text-white mb-10 leading-relaxed font-light">
+                                                        Implemented state estimation algorithms using Extended Kalman Filters(EKF) and Particle Filters (PF) , in conjunction with either a separate camera or a lidar sensor, given a low quality single encoder to achieve robust and accurate localization on a robotic vehicle.
+                                                    </p>
+                                                    <a href="#" target="_blank" className={githubButtonStyle}>
+                                                        View on GitHub <Icon name="github" className="w-5 h-5" />
+                                                    </a>
+                                                </div>
+                                                
+                                            </div>
+
                                         {/* Vertically Integrated Project Self-Drive */}
                                         <div className="pt-8 text-center">
                                             <div className="flex flex-wrap justify-center gap-2 mb-2">
@@ -636,23 +677,31 @@
                             </div>
                         </section>
 
-                        {/* Education (Moved below Projects) */}
+                        {/* Education*/}
                         <section>
                             <SectionHeading icon="book" id="education">Education</SectionHeading>
                             <div className="grid md:grid-cols-2 gap-8">
-                                <div className="p-10 rounded-[2.5rem] bg-slate-900/30 border border-white/5 hover:border-blue-500/30 transition-all group overflow-hidden relative flex flex-col">
-                                    <div className="mb-8">
-                                        <h3 className="text-2xl font-bold text-blue-300 mb-4">New York University Tandon School of Engineering</h3>
-                                        <p className="text-slate-100 text-xl mb-1 font-medium">M.S. in Mechatronics and Robotics</p>
-                                        <p className="text-slate-400 mb-6 font-medium">Anticipated Graduation: May 2026</p>
-                                        <div className="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-lg inline-block font-mono mb-8 italic border border-blue-500/20 text-xl font-bold">Current GPA: <span className="font-black text-2xl ml-1 tracking-tighter">3.958</span></div>
+                                <div className="p-10 rounded-[2.5rem] bg-slate-900/30 border border-white/5 flex flex-col">
+                                    <h3 className="text-2xl font-bold text-blue-300 mb-4">NYU Tandon School of Engineering</h3>
+                                    <p className="text-slate-100 text-xl font-medium">M.S. in Mechatronics and Robotics</p>
+                                    <p className="text-slate-400 mb-6">Graduated: May 2026</p>
+                                    <div className="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-lg inline-block font-mono mb-8 border border-blue-500/20 text-xl font-bold">GPA: 3.958</div>
                                         <h4 className="text-slate-100 font-bold mb-4 uppercase tracking-[0.2em] text-[10px] text-blue-400">Relevant Courses:</h4>
                                         <ul className="grid grid-cols-1 gap-3 text-slate-200 text-sm list-disc list-inside">
-                                            {["Optimization and Reinforcement learning", "Autonomous Robotic Vehicles", "Vertically Integrated Project: Self Drive- implementing SLAM", "Vertically Integrated Project: Research on bi-pedal robots (RL Focused)", "Foundations of Robotics", "Mathematics for Robotics", "Advanced Mechatronics", "Gait and Manipulation", "High-Technology Entrepreneurship"].map(c => <li key={c}>{c}</li>)}
+                                        {[
+                                            "Optimization and Reinforcement learning", 
+                                            "Autonomous Robotic Vehicles", 
+                                            "Robotic Localization and Navigation",
+                                            "Vertically Integrated Project: Self Drive- implementing SLAM", 
+                                            "Foundations of Robotics", 
+                                            "Mathematics for Robotics", 
+                                            "Advanced Mechatronics", 
+                                            "Gait and Manipulation", 
+                                            "High-Technology Entrepreneurship"
+                                        ].map(c => <li key={c}>{c}</li>)}
                                         </ul>
-                                    </div>
-                                    <div className="mt-auto flex justify-center w-full pt-10">
-                                        <img src="https://lorkol.github.io/Media/Logos/NYU.jpg" alt="NYU Logo" className="w-1/2 h-auto rounded-xl shadow-2xl border border-white/10" />
+                                    <div className="mt-auto pt-10 flex justify-center">
+                                        <img src="https://lorkol.github.io/Media/Logos/NYU.jpg" className="w-1/2 rounded-xl shadow-2xl" />
                                     </div>
                                 </div>
                                 <div className="p-10 rounded-[2.5rem] bg-slate-900/30 border border-white/5 hover:border-blue-500/30 transition-all group relative overflow-hidden flex flex-col">
@@ -682,23 +731,23 @@
                             </div>
                         </section>
 
-                        {/* Skills (Moved below Education) */}
+                        {/* Skills*/}
                         <section>
                             <SectionHeading icon="award" id="skills">Skills</SectionHeading>
                             <div className="grid md:grid-cols-2 gap-10">
                                 <div className="bg-slate-900/40 p-10 rounded-[3rem] border border-white/5">
-                                    <h3 className="text-2xl font-black text-blue-300 mb-8 flex items-center gap-4">Software</h3>
+                                    <h3 className="text-2xl font-black text-blue-300 mb-8">Software</h3>
                                     <div className="flex flex-wrap gap-4">
-                                        {["Python", "C++", "GIT", "OpenCV", "Pybind", "LabVIEW", "PyQt", "MatLab", "Simulink", "ROS"].map(s => (
-                                            <span key={s} className="px-6 py-3 rounded-2xl bg-slate-800 text-white font-bold border border-white/20 shadow-sm">{s}</span>
+                                        {["Python", "C++", "ROS2", "Nav2", "Gazebo", "Mujoco", "Docker", "GIT", "OpenCV", "Pybind", "LabVIEW", "PyQt", "MatLab"].map(s => (
+                                            <span key={s} className="px-6 py-3 rounded-2xl bg-slate-800 text-white font-bold border border-white/20">{s}</span>
                                         ))}
                                     </div>
                                 </div>
                                 <div className="bg-slate-900/40 p-10 rounded-[3rem] border border-white/5">
-                                    <h3 className="text-2xl font-black text-blue-300 mb-8 flex items-center gap-4">Technical</h3>
+                                    <h3 className="text-2xl font-black text-blue-300 mb-8">Technical</h3>
                                     <div className="flex flex-wrap gap-4">
-                                        {["Motion Planning", "Control Theory", "Optimization", "Model Predictive Control", "Reinforcement Learning", "Signal Processing", "Sensor and Actuator Integration", "Project Management", "Client-Development", "Requirements Analysis"].map(s => (
-                                            <span key={s} className="px-6 py-3 rounded-2xl bg-blue-500/10 text-blue-100 font-bold border border-blue-500/30 shadow-sm">{s}</span>
+                                        {["Motion Planning", "Control Theory", "MPC", "MPPI", "Reinforcement Learning", "Localization and Navigation", "EKF", "Particle Filtering", "Optimization", "Signal Processing", "Sensor Fusion"].map(s => (
+                                            <span key={s} className="px-6 py-3 rounded-2xl bg-blue-500/10 text-blue-100 font-bold border border-blue-500/30">{s}</span>
                                         ))}
                                     </div>
                                 </div>
