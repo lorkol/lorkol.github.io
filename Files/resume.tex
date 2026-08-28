@@ -1,0 +1,82 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{microtype}
+
+\geometry{top=0.4in, bottom=0.4in, left=0.4in, right=0.4in}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\titleformat{\section}{\large\bfseries\uppercase}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{8pt}{3pt}
+\hypersetup{colorlinks=true, urlcolor=blue}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Eitan Niv}} \\[4pt]
+    (929) 969-5684 • eitanniv@gmail.com • Brooklyn, NY 11224 • \href{https://www.linkedin.com}{LinkedIn} • \href{https://lorkol.github.io/}{Website} \\[4pt]
+    \textit{Robotics, path planning and control engineer with experience deploying real-time, hardware–software systems}
+\end{center}
+
+\vspace{-4pt}
+
+\section{Experience}
+
+\textbf{Research Scholar} \hfill \textbf{May 2026 – Current} \\
+\textit{NYU Center for Robotics, New York City, United States} \\
+Developed a quadruped robot traversing and climbing structures.
+\begin{itemize}[nosep, leftmargin=1.5em, topsep=2pt]
+    \item Designed and implemented an MPC controller using Pinocchio and Crocoddyl enabling quadruped walking, vertical climbing, and horizontal climbing, after benchmarking it against an IK solver with a custom Whole-Body Controller (WBC).
+    \item Simulated the robot in Mujoco, and continued in deploying the sim-to-real pipeline for the robot.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{Robotics Graduate Teaching Assistant - Mechatronics, Dynamics, Math for Robotics and Foundations of Robotics} \hfill \textbf{Sep 2025 – May 2026} \\
+\textit{NYU Tandon School of Engineering, New York City, United States}
+\begin{itemize}[nosep, leftmargin=1.5em, topsep=2pt]
+    \item Supported graduate-level robotics coursework covering kinematics, state-space control, estimation (Kalman / BLUE / SVD), and system modeling.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{Software Engineer} \hfill \textbf{June 2021 – December 2023} \\
+\textit{Zalirian LTD., Tel Aviv, Israel}
+\begin{itemize}[nosep, leftmargin=1.5em, topsep=2pt]
+    \item Designed and implemented a production-grade, real-time edge control and perception system, integrating motors, industrial cameras, and external hardware SDKs.
+    \item Built high-performance, maintainable software architecture, leveraging multithreading, multiprocessing, design patterns, and C++/Python interoperability (Pybind), with robust logging and telemetry for real-time monitoring and post-deployment support.
+    \item Implemented a Motion Planning algorithm to assure movement efficiency and safety in a 5DoF system with physical limitations and obstacles, thereby improving the movement efficiency and safety.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{Software and Hardware Developer} \hfill \textbf{October 2018 – April 2021} \\
+\textit{Israeli Air Force, Israel}
+\begin{itemize}[nosep, leftmargin=1.5em, topsep=2pt]
+    \item Led end-to-end deployment and validation of mission-critical hardware/software systems in live environments.
+    \item Modernized legacy airborne and sensor systems, integrating new hardware with existing infrastructure.
+    \item Applied signal processing to complex data acquisition systems to evaluate reliability, accuracy, and safety.
+    \item Performed system-level fault analysis and debugging to support flight investigations and operational readiness.
+    \item Delivered solutions in environments requiring high reliability, rapid diagnosis, and clear technical documentation.
+\end{itemize}
+
+\section{Skills}
+\textbf{Software:} Python, C++, ROS2, GIT, Pybind, LabVIEW, OpenCV, PyQt, MatLab, Simulink, Nav2, Gazebo, Mujoco, Docker, Pinocchio, Crocoddyl \\
+\textbf{Technical:} Motion Planning, Control Theory, Signal Processing, Sensor and Actuator Integration, Localization and Navigation, EKF, Particle Filtering, Project Management, Client-Development, Requirements analysis, Device Drivers \& SDK Integration
+
+\section{Projects}
+\textbf{M.Sc Final Project:} Designed and implemented a collision mitigation strategy for autonomous vehicles, integrating a multi-stage MPPI controller into the Nav2 library. Developed custom plugins for obstacle surface calculation and created replicable Gazebo testing scenarios and Docker containers.
+
+\textbf{M.Sc Mechatronics Projects:} Programmed a SCARA robot arm that can reproduce intricate sketches using RPi, Arduino and ArUco markers • Simulator for forward and inverse kinematics of a 6DOF robotic arm • Path Planning on UR16e robotic arm in Gazebo using ROS2 • Designed and implemented MPC, MPPI controllers for a simulated drone / robotic arm • Designed a full AMR simulation from dynamics, to motion planning and multiple controllers, using a modular architecture for switching between planners and controllers • Implemented state estimation algorithms using Extended Kalman Filters (EKF) and Particle Filters (PF), in conjunction with either a separate camera or a lidar sensor, given a low quality single encoder to achieve robust and accurate localization on a robotic vehicle.
+
+\textbf{B.S Final Project:} Designing and implementing a self-balancing quadrotor drone control system.
+
+\section{Education}
+\textbf{New York University Tandon School of Engineering} \hfill \textbf{Graduated May 2026} \\
+M.S. in Mechatronics and Robotics -- GPA 3.96 \\[3pt]
+\textbf{Tel Aviv University} \hfill \textbf{Graduated June 2020} \\
+B.S. in Electrical Engineering and Computer Science
+
+\end{document}
